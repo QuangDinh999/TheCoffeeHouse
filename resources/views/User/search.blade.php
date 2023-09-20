@@ -34,7 +34,7 @@
         <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
             <li class="breadcrumb-item"><a href="#">Products</a></li>
-            <li class="breadcrumb-item active">product list</li>
+            <li class="breadcrumb-item active">result</li>
         </ul>
     </div>
 </div>
@@ -48,36 +48,36 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-lg-12">
-                            <h4  style="text-align: center; color: #CDA566; font-family: 'Open Sans', sans-serif; font-size: 40px">MENU</h4><br>
+                        <h4  style="text-align: center; color: #CDA566; font-family: 'Open Sans', sans-serif; font-size: 40px">RESULT</h4><br>
                         <hr style="border-bottom: 5px #CDA566 solid">
                     </div>
-                        @foreach($drinks as $drink)
-                            <div class="col-lg-3">
-                                <div class="product-item">
-                                    <div class="product-image">
-                                        <a href="product-detail.html">
-                                            <img src="{{asset('storage/Drink/'. $drink->image)}}" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="#"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-content">
-                                        <div class="title"><a href="#">{{$drink->drink_name}}</a></div>
-                                        <div class="ratting">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="price">{{number_format($drink->price_each_size)}} VNĐ</div>
+                    @foreach($searching as $search)
+                        <div class="col-lg-3">
+                            <div class="product-item">
+                                <div class="product-image">
+                                    <a href="product-detail.html">
+                                        <img src="{{asset('storage/Drink/'. $search->image)}}" alt="Product Image">
+                                    </a>
+                                    <div class="product-action">
+                                        <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                        <a href="#"><i class="fa fa-heart"></i></a>
+                                        <a href="#"><i class="fa fa-search"></i></a>
                                     </div>
                                 </div>
+                                <div class="product-content">
+                                    <div class="title"><a href="#">{{$search->drink_name}}</a></div>
+                                    <div class="ratting">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="price">{{number_format($search->price_each_size)}} VNĐ</div>
+                                </div>
                             </div>
-                        @endforeach
+                        </div>
+                    @endforeach
                 </div>
 
                 <div class="col-lg-12">
@@ -96,10 +96,6 @@
                     </nav>
                 </div>
             </div>
-
-
-
-
         </div>
     </div>
 </div>

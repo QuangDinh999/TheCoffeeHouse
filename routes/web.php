@@ -18,6 +18,8 @@ Route::get('/login', [\App\Http\Controllers\CustomerController::class, 'Login'])
 
 Route::prefix('CoffeeHouse')->group(function (){
     Route::get('/', [\App\Http\Controllers\CoffeeHouse::class, 'index'])->name('CoffeeHouse');
+    Route::get('/drink-list', [\App\Http\Controllers\CoffeeHouse::class, 'drinklist'])->name('drink-list');
+    Route::get('/search', [\App\Http\Controllers\CoffeeHouse::class, 'search'])->name('search');
 });
 
 Route::prefix('/category')->group(function (){

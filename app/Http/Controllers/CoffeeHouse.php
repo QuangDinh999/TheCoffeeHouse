@@ -14,4 +14,20 @@ class CoffeeHouse extends Controller
             'drinks' => $drink
         ]);
     }
+    public function drinklist() {
+        $obj = new \App\Models\CoffeeHouse();
+        $drink = $obj->drinklist();
+        return view('user.product-list', [
+            'drinks' => $drink
+        ]);
+    }
+
+    public function search( Request $request) {
+        $obj = new \App\Models\CoffeeHouse();
+        $obj->search = $request->search_word;
+        $search = $obj->search();
+        return view('user.search', [
+            'searching' => $search
+        ]);
+    }
 }
