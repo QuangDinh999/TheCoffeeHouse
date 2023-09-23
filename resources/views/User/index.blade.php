@@ -73,7 +73,7 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <div class="title"><a href="#" style="text-decoration: none">{{$drink->drink_name}}</a></div>
+                                    <div class="title"><a href="{{route('product-detail', $drink->drink_id)}}" style="text-decoration: none">{{$drink->drink_name}}</a></div>
                                     <div class="ratting">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>

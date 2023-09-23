@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\Authenticate;
 use App\Models\Admin;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
+use Illuminate\Http\Client\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class AdminController extends Controller
@@ -71,5 +74,22 @@ class AdminController extends Controller
     {
         $admin->delete();
         return Redirect::route('admin.index');
+    }
+
+    public function login() {
+        return view('Login.Admin.login');
+    }
+
+    public function login_process(\Illuminate\Http\Request $request) {
+        $account = $request->only(['email', 'password']);
+        if(Auth::guard('admin')->attempt($account)){
+//            $accountadmin = Auth::guard('admin')->user();
+//            Auth::login($accountadmin);
+//            return Redirect::route('drink.index');
+            dd('ok');
+        }else{
+//           return Redirect::route('admin.login');
+            dd(' deo ok');
+        }
     }
 }

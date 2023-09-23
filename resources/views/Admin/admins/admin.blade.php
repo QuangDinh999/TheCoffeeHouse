@@ -32,9 +32,9 @@
                     @foreach($admins as $admin)
                         <tr>
                             <td>{{$admin->id}}</td>
-                            <td>{{$admin->admin_email}}</td>
+                            <td>{{$admin->email}}</td>
                             <td>{{$admin->admin_name}}</td>
-                            <td>{{$admin->admin_password}}</td>
+                            <td>{{$admin->password}}</td>
 
                             <td>
                                 <form action="{{route('admin.edit', $admin)}}">

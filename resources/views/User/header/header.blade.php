@@ -4,7 +4,7 @@
         <div class="row align-items-center">
             <div class="col-md-3">
                 <div class="logo">
-                    <a href="">
+                    <a href="{{route('CoffeeHouse')}}">
                         <img src="{{asset('storage/logo/coffee.png')}}" alt="Logo">
                     </a>
                 </div>
@@ -12,6 +12,7 @@
             <div class="col-md-6">
                 <div class="search">
                     <form action="{{route('search')}}">
+
                         <input type="text" placeholder="Search" name="search_word" value="">
                         <button style="height: 40px; right: 13px; padding: 0px 15px; top: 0px"><i class="fa fa-search"></i></button>
                     </form>
@@ -22,8 +23,8 @@
                     <div class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration: none; color: #CDA566">My Account</a>
                         <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item">Login</a>
-                            <a href="#" class="dropdown-item">Register</a>
+                            <a href="#" class="dropdown-item">My Account</a>
+                            <a href="{{route('customer.login')}}" class="dropdown-item">Login</a>
                         </div>
                     </div>
                     <div class="cart">
@@ -53,9 +54,10 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Menu</a>
                         <div class="dropdown-menu">
-                            <a href="product-list.html" class="dropdown-item">Coffee</a>
-                            <a href="product-detail.html" class="dropdown-item">Trà</a>
-                            <a href="cart.html" class="dropdown-item">Thức uống đá xay</a>
+                            @foreach($categories as $category)
+                                <a href="{{route('category', $category->id)}}" class="dropdown-item">{{$category->category_name}}</a>
+                            @endforeach
+
                         </div>
                     </div>
 

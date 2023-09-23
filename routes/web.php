@@ -20,6 +20,20 @@ Route::prefix('CoffeeHouse')->group(function (){
     Route::get('/', [\App\Http\Controllers\CoffeeHouse::class, 'index'])->name('CoffeeHouse');
     Route::get('/drink-list', [\App\Http\Controllers\CoffeeHouse::class, 'drinklist'])->name('drink-list');
     Route::get('/search', [\App\Http\Controllers\CoffeeHouse::class, 'search'])->name('search');
+    Route::get('/{id}/category', [\App\Http\Controllers\CoffeeHouse::class, 'category'])->name('category');
+    Route::get('/{id}/product-detail', [\App\Http\Controllers\CoffeeHouse::class, 'product_detail'])->name('product-detail');
+
+});
+
+Route::prefix('login-admin')->group(function (){
+   Route::get('/', [\App\Http\Controllers\AdminController::class, 'login'])->name('admin.login');
+   Route::get('/login_process', [\App\Http\Controllers\AdminController::class, 'login_process'])->name('admin.login_process');
+});
+
+
+Route::prefix('login-customer')->group(function (){
+    Route::get('/', [\App\Http\Controllers\CustomerController::class, 'loginCustomer'])->name('customer.login');
+    Route::get('/login_process', [\App\Http\Controllers\CustomerController::class, 'loginCustomer_process'])->name('customer.login_process');
 });
 
 Route::prefix('/category')->group(function (){
