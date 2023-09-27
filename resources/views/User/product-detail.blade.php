@@ -68,20 +68,21 @@
                                 <div class="details">
                                     <p>{{$drink->description}}</p>
                                 </div>
-                                <div class="option-size">
-                                    <h4>Chọn Size:</h4>
-
+                                <form action="{{route('add_cart_product_detail')}}">
+                                    <div class="option-size">
+                                        <h4>Chọn Size:</h4>
                                         <div class="opt">
-                                            <select name="size" id="" style="width: 180px">
+                                            <select name="id" style="width: 180px">
                                                 @foreach($drinksizes as $drinksize)
-                                                <option value="{{$drinksize->id}}">{{$drinksize->size}} - {{number_format($drinksize->price_each_size)}} VNĐ</option>
+                                                    <option value="{{$drinksize->id}}">{{$drinksize->size}} - {{number_format($drinksize->price_each_size)}} VNĐ</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                </div>
-                                <div class="action">
-                                    <a href="#" style="width: 380px">Đặt Giao Tận Nơi <i class="fa fa-cart-plus"></i></a>
-                                </div>
+                                    </div>
+                                    <div class="action">
+                                        <button>Đặt Giao Tận Nơi <i class="fa fa-cart-plus"></button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

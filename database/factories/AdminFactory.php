@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use function Laravel\Prompts\password;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Admin>
@@ -17,7 +18,8 @@ class AdminFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+
+            'password' => bcrypt('123456'),
         ];
     }
 }

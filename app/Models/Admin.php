@@ -13,4 +13,6 @@ class Admin extends Model implements \Illuminate\Contracts\Auth\Authenticatable
     protected $fillable = ['email', 'admin_name', 'password'];
     public $timestamps = false;
     protected $table = 'admins';
+
+
 }

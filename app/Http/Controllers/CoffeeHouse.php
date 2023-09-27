@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Category;
@@ -56,5 +55,17 @@ class CoffeeHouse extends Controller
             'drinksizes' => $array['drinksizes'],
             'categories' => $cate
         ]);
+    }
+
+    public function cart(Request $request) {
+        $obj = new \App\Models\CoffeeHouse();
+        $id = $request->id;
+
+        $category= $obj->category();
+
+        return view('User.cart', [
+            'categories' => $category
+        ]);
+
     }
 }

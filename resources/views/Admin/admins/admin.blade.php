@@ -21,7 +21,6 @@
                         <th>Customer ID</th>
                         <th>Email</th>
                         <th>Name</th>
-                        <th>Password</th>
                         <th>Edit</th>
                         <th>Delete</th>
 
@@ -34,7 +33,6 @@
                             <td>{{$admin->id}}</td>
                             <td>{{$admin->email}}</td>
                             <td>{{$admin->admin_name}}</td>
-                            <td>{{$admin->password}}</td>
 
                             <td>
                                 <form action="{{route('admin.edit', $admin)}}">

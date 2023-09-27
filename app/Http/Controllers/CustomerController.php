@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use Illuminate\Http\Client\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -39,8 +40,12 @@ class CustomerController extends Controller
      */
     public function store(StoreCustomerRequest $request)
     {
-        $data = $request->all();
-        Customer::create($data);
+        $array = array();
+        $array = Arr::add($array, 'cus_name', $request->cus_name);
+        $array = Arr::add($array, 'email', $request->cus_email);
+        $array = Arr::add($array, 'password', bcrypt($request->cus_password));
+        $array = Arr::add($array, 'phone', $request->phone);
+        Customer::create($array);
         return Redirect::route('customer.index');
     }
 
@@ -87,9 +92,18 @@ class CustomerController extends Controller
     public function loginCustomer_process(\Illuminate\Http\Request $request) {
         $accountCustomer = $request->only(['email', 'password']);
         if(Auth::guard('customer')->attempt($accountCustomer)){
-            dd('okela');
+            $account = Auth::guard('customer')->user();
+            Auth::login($account);
+            session(['customer' => $account]);
+            return Redirect::route('CoffeeHouse');
         }else{
-            dd('ko okela');
+            return Redirect::route('customer.login');
         }
+    }
+
+    public function logout() {
+        Auth::logout();
+        session()->forget('customer');
+        return Redirect::route('customer.login');
     }
 }

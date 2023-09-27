@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/login', [\App\Http\Controllers\CustomerController::class, 'Login'])->name('login');
+
 
 Route::prefix('CoffeeHouse')->group(function (){
     Route::get('/', [\App\Http\Controllers\CoffeeHouse::class, 'index'])->name('CoffeeHouse');
@@ -22,21 +21,25 @@ Route::prefix('CoffeeHouse')->group(function (){
     Route::get('/search', [\App\Http\Controllers\CoffeeHouse::class, 'search'])->name('search');
     Route::get('/{id}/category', [\App\Http\Controllers\CoffeeHouse::class, 'category'])->name('category');
     Route::get('/{id}/product-detail', [\App\Http\Controllers\CoffeeHouse::class, 'product_detail'])->name('product-detail');
+    Route::get('/{id}/add_cart', [\App\Http\Controllers\CoffeeHouse::class, 'cart'])->name('add_cart');
+    Route::get('/add_cart_product_detail', [\App\Http\Controllers\CoffeeHouse::class, 'cart'])->name('add_cart_product_detail');
 
 });
 
 Route::prefix('login-admin')->group(function (){
    Route::get('/', [\App\Http\Controllers\AdminController::class, 'login'])->name('admin.login');
    Route::get('/login_process', [\App\Http\Controllers\AdminController::class, 'login_process'])->name('admin.login_process');
+   Route::get('/logout', [\App\Http\Controllers\AdminController::class, 'logout'])->name('admin.logout');
 });
 
 
 Route::prefix('login-customer')->group(function (){
     Route::get('/', [\App\Http\Controllers\CustomerController::class, 'loginCustomer'])->name('customer.login');
     Route::get('/login_process', [\App\Http\Controllers\CustomerController::class, 'loginCustomer_process'])->name('customer.login_process');
+    Route::get('/logout', [\App\Http\Controllers\CustomerController::class, 'logout'])->name('customer.logout');
 });
 
-Route::prefix('/category')->group(function (){
+Route::middleware('AdminMiddleware')->prefix('/category')->group(function (){
     Route::get('/', [\App\Http\Controllers\CategoryController::class, 'index'])->name('category.index');
     Route::get('/create', [\App\Http\Controllers\CategoryController::class, 'create'])->name('category.create');
     Route::post('/create', [\App\Http\Controllers\CategoryController::class, 'store'])->name('category.store');
@@ -45,7 +48,7 @@ Route::prefix('/category')->group(function (){
     Route::delete('/{category}/destroy', [\App\Http\Controllers\CategoryController::class, 'destroy'])->name('category.destroy');
 });
 
-Route::prefix('/customer')->group(function (){
+Route::middleware('AdminMiddleware')->prefix('/customer')->group(function (){
     Route::get('/', [\App\Http\Controllers\CustomerController::class, 'index'])->name('customer.index');
     Route::get('/create', [\App\Http\Controllers\CustomerController::class, 'create'])->name('customer.create');
     Route::post('/create', [\App\Http\Controllers\CustomerController::class, 'store'])->name('customer.store');
@@ -55,7 +58,7 @@ Route::prefix('/customer')->group(function (){
 });
 
 
-Route::prefix('/size')->group(function (){
+Route::middleware('AdminMiddleware')->prefix('/size')->group(function (){
     Route::get('/', [\App\Http\Controllers\SizeController::class, 'index'])->name('size.index');
     Route::get('/create', [\App\Http\Controllers\SizeController::class, 'create'])->name('size.create');
     Route::post('/create', [\App\Http\Controllers\SizeController::class, 'store'])->name('size.store');
@@ -64,7 +67,7 @@ Route::prefix('/size')->group(function (){
     Route::delete('/{size}/destroy', [\App\Http\Controllers\SizeController::class, 'destroy'])->name('size.destroy');
 });
 
-Route::prefix('/paymentmethods')->group(function (){
+Route::middleware('AdminMiddleware')->prefix('/paymentmethods')->group(function (){
     Route::get('/', [\App\Http\Controllers\PaymentController::class, 'index'])->name('payment.index');
     Route::get('/create', [\App\Http\Controllers\PaymentController::class, 'create'])->name('payment.create');
     Route::post('/create', [\App\Http\Controllers\PaymentController::class, 'store'])->name('payment.store');
@@ -73,7 +76,7 @@ Route::prefix('/paymentmethods')->group(function (){
     Route::delete('{payment}/destroy', [\App\Http\Controllers\PaymentController::class, 'destroy'])->name('payment.destroy');
 });
 
-Route::prefix('/drinks')->group(function (){
+Route::middleware('AdminMiddleware')->prefix('/drinks')->group(function (){
     Route::get('/', [\App\Http\Controllers\DrinkController::class, 'index'])->name('drink.index');
     Route::get('/create', [\App\Http\Controllers\DrinkController::class, 'create'])->name('drink.create');
     Route::post('/create', [\App\Http\Controllers\DrinkController::class, 'store'])->name('drink.store');
@@ -82,7 +85,7 @@ Route::prefix('/drinks')->group(function (){
     Route::delete('/{drink}/destroy', [\App\Http\Controllers\DrinkController::class, 'destroy'])->name('drink.destroy');
 });
 
-Route::prefix('/admins')->group(function (){
+Route::middleware('AdminMiddleware')->prefix('/admins')->group(function (){
     Route::get('/', [\App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
     Route::get('/create', [\App\Http\Controllers\AdminController::class, 'create'])->name('admin.create');
     Route::post('/create', [\App\Http\Controllers\AdminController::class, 'store'])->name('admin.store');
@@ -91,7 +94,7 @@ Route::prefix('/admins')->group(function (){
     Route::delete('/{admin}/destroy', [\App\Http\Controllers\AdminController::class, 'destroy'])->name('admin.destroy');
 });
 
-Route::prefix('/drinksize')->group(function (){
+Route::middleware('AdminMiddleware')->prefix('/drinksize')->group(function (){
     Route::get('/', [\App\Http\Controllers\DrinkSizeController::class, 'index'])->name('drinksize.index');
     Route::get('/create', [\App\Http\Controllers\DrinkSizeController::class, 'create'])->name('drinksize.create');
     Route::post('/create', [\App\Http\Controllers\DrinkSizeController::class, 'store'])->name('drinksize.store');

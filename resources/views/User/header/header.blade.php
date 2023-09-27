@@ -21,14 +21,23 @@
             <div class="col-md-3">
                 <div class="user">
                     <div class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration: none; color: #CDA566">My Account</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration: none; color: #CDA566">
+                            @if(session()->has('customer'))
+                                {{session('customer.email')}}
+                            @else My Account
+                            @endif
+                        </a>
                         <div class="dropdown-menu">
                             <a href="#" class="dropdown-item">My Account</a>
-                            <a href="{{route('customer.login')}}" class="dropdown-item">Login</a>
+                            @if(session()->has('customer'))
+                                <a href="{{route('customer.logout')}}" class="dropdown-item">Logout</a>
+                            @else
+                                <a href="{{route('customer.login')}}" class="dropdown-item">Login</a>
+                            @endif
                         </div>
                     </div>
                     <div class="cart">
-                        <i class="fa fa-cart-plus"></i>
+                        <a href=""><i class="fa fa-cart-plus"></i></a>
                         <span>(0)</span>
                     </div>
                 </div>

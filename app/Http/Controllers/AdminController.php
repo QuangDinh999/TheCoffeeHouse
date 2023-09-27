@@ -6,9 +6,11 @@ use App\Http\Middleware\Authenticate;
 use App\Models\Admin;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
-use Illuminate\Http\Client\Request;
+use \Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use MongoDB\Driver\Session;
 
 class AdminController extends Controller
 {
@@ -36,7 +38,11 @@ class AdminController extends Controller
      */
     public function store(StoreAdminRequest $request)
     {
-        Admin::create($request->all());
+        $array = [];
+        $array = Arr::add($array,'email', $request->admin_email);
+        $array = Arr::add($array, 'password' , bcrypt($request->admin_password));
+        $array = Arr::add($array, 'admin_name' , $request->admin_name);
+        Admin::create($array);
         return Redirect::route('admin.index');
     }
 
@@ -80,16 +86,22 @@ class AdminController extends Controller
         return view('Login.Admin.login');
     }
 
-    public function login_process(\Illuminate\Http\Request $request) {
+    public function login_process(Request $request) {
         $account = $request->only(['email', 'password']);
+        $admin_name = $request->email;
         if(Auth::guard('admin')->attempt($account)){
-//            $accountadmin = Auth::guard('admin')->user();
-//            Auth::login($accountadmin);
-//            return Redirect::route('drink.index');
-            dd('ok');
+            $accountadmin = Auth::guard('admin')->user();
+            Auth::login($accountadmin);
+            session(['admin' => $accountadmin]);
+            return Redirect::route('drink.index');
         }else{
-//           return Redirect::route('admin.login');
-            dd(' deo ok');
+           return Redirect::route('admin.login');
         }
+    }
+
+    public function logout() {
+        Auth::logout();
+        session()->forget('admin');
+        return Redirect::route('admin.login');
     }
 }

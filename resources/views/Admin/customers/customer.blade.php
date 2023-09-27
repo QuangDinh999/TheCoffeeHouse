@@ -21,7 +21,6 @@
                         <th>Customer ID</th>
                         <th>Customer name</th>
                         <th>Email</th>
-                        <th>Password</th>
                         <th>Phone</th>
                         <th>Edit</th>
                         <th>Delete</th>
@@ -33,8 +32,7 @@
                             <tr>
                                 <td>{{$customer->id}}</td>
                                 <td>{{$customer->cus_name}}</td>
-                                <td>{{$customer->cus_email}}</td>
-                                <td>{{$customer->cus_password}}</td>
+                                <td>{{$customer->email}}</td>
                                 <td>{{$customer->phone}}</td>
                                 <td>
                                     <form action="{{route('customer.edit', $customer)}}">
