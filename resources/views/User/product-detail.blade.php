@@ -44,12 +44,12 @@
 <div class="product-detail">
     <div class="container">
         <div class="row">
-            <div class="col-lg-9">
+            <div class="col-lg-12">
                 @foreach($drinks as $drink)
                     <div class="row align-items-center product-detail-top" style="margin-bottom: 250px">
                         <div class="col-md-5">
                             <div class="product-slider-single">
-                                <img src="{{asset('storage/Drink/'. $drink->image)}}" alt="Product Image">
+                                <img src="{{asset('storage/Drink/'. $drink->image)}}" width="180px" alt="Product Image">
                             </div>
                         </div>
                         <div class="col-md-7">
@@ -69,6 +69,9 @@
                                     <p>{{$drink->description}}</p>
                                 </div>
                                 <form action="{{route('add_cart_product_detail')}}">
+                                    <div class="action" style="margin-bottom: 12px; ">
+                                        <h4 style="color: black; display: inline-block">Đặt Hàng</h4><button style="background:#CDA566; color: #FFFFFF; border: solid 2px #CDA566; padding: 6px">Đặt Giao Tận Nơi <i class="fa fa-cart-plus"></i></button>
+                                    </div>
                                     <div class="option-size">
                                         <h4>Chọn Size:</h4>
                                         <div class="opt">
@@ -79,29 +82,11 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="action">
-                                        <button>Đặt Giao Tận Nơi <i class="fa fa-cart-plus"></button>
-                                    </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                 @endforeach
-            </div>
-
-            <div class="col-lg-3">
-                <div class="sidebar-widget category">
-                    <h2 class="title">Category</h2>
-                    <ul>
-                        <li><a href="#">Lorem Ipsum</a><span>(83)</span></li>
-                        <li><a href="#">Cras sagittis</a><span>(198)</span></li>
-                        <li><a href="#">Vivamus</a><span>(95)</span></li>
-                        <li><a href="#">Fusce vitae</a><span>(48)</span></li>
-                        <li><a href="#">Vestibulum</a><span>(210)</span></li>
-                        <li><a href="#">Proin phar</a><span>(78)</span></li>
-                    </ul>
-                </div>
-
             </div>
         </div>
     </div>

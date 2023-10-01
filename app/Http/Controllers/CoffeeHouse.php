@@ -57,15 +57,58 @@ class CoffeeHouse extends Controller
         ]);
     }
 
-    public function cart(Request $request) {
+    public function add_cart(Request $request) {
         $obj = new \App\Models\CoffeeHouse();
-        $id = $request->id;
-
         $category= $obj->category();
+        $drinks = array();
+        $id = $request->id;
+        if(session()->has('cart')){
+            $cart = session('cart');
+            if(isset($cart[$id])){
+                $cart[$id]++;
+            }else{
+                $cart[$id] = 1;
+            }
+            session(['cart' => $cart]);
+        }else{
+            $cart = [];
+            $cart[$id] = 1;
+            session(['cart' => $cart]);
+        }
 
+        foreach ($cart as $id => $quantity){
+            $obj->id = $id;
+            $drinkcart = $obj->drinkcart();
+            foreach ($drinkcart as $drink){
+                $drinks[$id]['drink_name'] = $drink->drink_name;
+                $drinks[$id]['image'] = $drink->image;
+                $drinks[$id]['price'] = $drink->price_each_size;
+                $drinks[$id]['size'] = $drink->size;
+                $drinks[$id]['quantity'] = $quantity;
+            }
+        }
         return view('User.cart', [
-            'categories' => $category
+            'categories' => $category,
+            'drinks' => $drinks
         ]);
-
     }
+
+//    public function cart() {
+//        $cart = session('cart');
+//        $drinks = array();
+//        $obj = new \App\Models\CoffeeHouse();
+//        foreach ($cart as $id => $quantity){
+//            $obj->id = $id;
+//            $drinkcart = $obj->drinkcart();
+//            foreach ($drinkcart as $drink){
+//                $drinks[$id]['drink_name'] = $drink->drink_name;
+//                $drinks[$id]['image'] = $drink->image;
+//                $drinks[$id]['price'] = $drink->price_each_size;
+//                $drinks[$id]['quantity'] = $quantity;
+//            }
+//        }
+//        return view('User.cart', [
+//            $drinks
+//        ]);
+//    }
 }

@@ -21,8 +21,9 @@ Route::prefix('CoffeeHouse')->group(function (){
     Route::get('/search', [\App\Http\Controllers\CoffeeHouse::class, 'search'])->name('search');
     Route::get('/{id}/category', [\App\Http\Controllers\CoffeeHouse::class, 'category'])->name('category');
     Route::get('/{id}/product-detail', [\App\Http\Controllers\CoffeeHouse::class, 'product_detail'])->name('product-detail');
-    Route::get('/{id}/add_cart', [\App\Http\Controllers\CoffeeHouse::class, 'cart'])->name('add_cart');
-    Route::get('/add_cart_product_detail', [\App\Http\Controllers\CoffeeHouse::class, 'cart'])->name('add_cart_product_detail');
+    Route::get('/{id}/add_cart', [\App\Http\Controllers\CoffeeHouse::class, 'add_cart'])->name('add_cart');
+    Route::get('/add_cart_product_detail', [\App\Http\Controllers\CoffeeHouse::class, 'add_cart'])->name('add_cart_product_detail');
+    Route::get('/cart', [\App\Http\Controllers\CoffeeHouse::class, 'add_cart'])->name('cart');
 
 });
 
