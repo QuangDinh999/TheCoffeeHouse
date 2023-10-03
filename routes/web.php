@@ -23,7 +23,11 @@ Route::prefix('CoffeeHouse')->group(function (){
     Route::get('/{id}/product-detail', [\App\Http\Controllers\CoffeeHouse::class, 'product_detail'])->name('product-detail');
     Route::get('/{id}/add_cart', [\App\Http\Controllers\CoffeeHouse::class, 'add_cart'])->name('add_cart');
     Route::get('/add_cart_product_detail', [\App\Http\Controllers\CoffeeHouse::class, 'add_cart'])->name('add_cart_product_detail');
-    Route::get('/cart', [\App\Http\Controllers\CoffeeHouse::class, 'add_cart'])->name('cart');
+    Route::get('/cart', [\App\Http\Controllers\CoffeeHouse::class, 'cart'])->name('cart');
+    Route::get('/{id}/delete_one', [\App\Http\Controllers\CoffeeHouse::class, 'delete_one'])->name('delete_one');
+    Route::get('/delete_all', [\App\Http\Controllers\CoffeeHouse::class, 'delete_all'])->name('delete_all');
+    Route::get('/update_cart', [\App\Http\Controllers\CoffeeHouse::class, 'update_cart'])->name('update_cart');
+    Route::get('/checkout', [\App\Http\Controllers\CoffeeHouse::class, 'checkout'])->name('checkout');
 
 });
 

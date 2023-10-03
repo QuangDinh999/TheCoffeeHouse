@@ -46,57 +46,85 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                            <th>Remove</th>
-                        </tr>
-                        </thead>
-                        <tbody class="align-middle">
-                        @foreach($drinks as $drink => $value)
-                            <tr>
-                                <td><a href="#">{{$value['drink_name']}}</a></td>
-                                <td><a href="#"><img src="{{asset('storage/Drink/'.$value['image'])}}" alt="Image"></a></td>
-                                <td>{{$value['price']}}</td>
-                                <td>
-                                    <div class="qty">
-                                        <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                        <input type="text" value={{$value['quantity']}}>
-                                        <button class="btn-plus"><i class="fa fa-plus"></i></button>
+                    <form action="{{route('update_cart')}}">
+                        <div class="cart-summary">
+                            <div class="cart-btn">
+                                <div class="row " style="text-align: center; margin-bottom: 16px">
+                                    <div class="col-md-4">
+                                        <button style="width: 80%; background: #cda566; color: #FFFFFF">Update Cart</button>
                                     </div>
-                                </td>
-                                <td>{{$value['size']}}</td>
-                                <td><button><i class="fa fa-trash"></i></button></td>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th>Remove</th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody class="align-middle">
+                            @foreach($drinks as $drink => $value)
+
+                                <tr>
+                                    <td><a href="#">{{$value['drink_name']}}</a></td>
+                                    <td><a href="#"><img src="{{asset('storage/Drink/'.$value['image'])}}" alt="Image"></a></td>
+                                    <td>{{$value['price']}}</td>
+                                    <td>
+                                        <div class="qty">
+                                            <button class="btn-minus"><i class="fa fa-minus"></i></button>
+                                            <input type="number" name="quantity[{{$drink}}]" value={{$value['quantity']}}>
+                                            <button class="btn-plus"><i class="fa fa-plus"></i></button>
+                                        </div>
+                                    </td>
+                                    <td>{{$value['size']}}</td>
+                                    <form action="{{route('delete_one', $drink)}}">
+                                        <td><button><i class="fa fa-trash"></i></button></td>
+                                    </form>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <div class="coupon">
-                    <input type="text" placeholder="Coupon Code">
-                    <button>Apply Code</button>
+            <div class="col-md-4">
+                <div class="cart-summary">
+
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-8" style="margin-top: 20px">
                 <div class="cart-summary">
                     <div class="cart-content">
                         <h3>Cart Summary</h3>
-                        <p>Sub Total<span>$22</span></p>
+                        @foreach($drinks as $drink => $value)
+                            <p>Sub Total<span>{{number_format($value['price_subtotal'])}} VNĐ</span></p>
+                        @endforeach
                         <p>Shipping Cost<span>$1</span></p>
-                        <h4>Grand Total<span>$23</span></h4>
+                        <h4>Grand Total
+                            <span>
+                                @php
+                                    if (empty(session('cart'))){
+
+                                    }else{
+                                        $total = 0;
+                                        foreach ($drinks as $drink => $value){
+                                            $final = $total += $value['price_total'];
+                                        }
+                                        echo number_format($final).' VNĐ';
+                                    }
+                                @endphp
+                            </span></h4>
                     </div>
                     <div class="cart-btn">
-                        <button>Update Cart</button>
-                        <button>Checkout</button>
+                        <a href="" style="padding: 12px 144px; border:solid #cda566 2px ">Delete Cart</a>
+                        <button style="background: #cda566; color: #FFFFFF">Checkout</button>
                     </div>
                 </div>
             </div>
