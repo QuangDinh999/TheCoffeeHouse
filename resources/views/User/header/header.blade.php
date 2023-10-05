@@ -37,8 +37,12 @@
                         </div>
                     </div>
                     <div class="cart">
-                        <a href=""><i class="fa fa-cart-plus"></i></a>
-                        <span>(0)</span>
+                        <a href="{{route('cart')}}"><i class="fa fa-cart-plus"></i></a>
+                            @if(session()->has('cart'))
+                                <span>({{count(session('cart'))}})</span>
+                            @else
+                                <span>(0)</span>
+                            @endif
                     </div>
                 </div>
             </div>

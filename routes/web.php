@@ -21,14 +21,16 @@ Route::prefix('CoffeeHouse')->group(function (){
     Route::get('/search', [\App\Http\Controllers\CoffeeHouse::class, 'search'])->name('search');
     Route::get('/{id}/category', [\App\Http\Controllers\CoffeeHouse::class, 'category'])->name('category');
     Route::get('/{id}/product-detail', [\App\Http\Controllers\CoffeeHouse::class, 'product_detail'])->name('product-detail');
+});
+Route::middleware('CustomerMiddleware')->prefix('/CoffeeHouse/cart')->group(function (){
     Route::get('/{id}/add_cart', [\App\Http\Controllers\CoffeeHouse::class, 'add_cart'])->name('add_cart');
     Route::get('/add_cart_product_detail', [\App\Http\Controllers\CoffeeHouse::class, 'add_cart'])->name('add_cart_product_detail');
-    Route::get('/cart', [\App\Http\Controllers\CoffeeHouse::class, 'cart'])->name('cart');
+    Route::get('/your-cart', [\App\Http\Controllers\CoffeeHouse::class, 'cart'])->name('cart');
     Route::get('/{id}/delete_one', [\App\Http\Controllers\CoffeeHouse::class, 'delete_one'])->name('delete_one');
     Route::get('/delete_all', [\App\Http\Controllers\CoffeeHouse::class, 'delete_all'])->name('delete_all');
     Route::get('/update_cart', [\App\Http\Controllers\CoffeeHouse::class, 'update_cart'])->name('update_cart');
     Route::get('/checkout', [\App\Http\Controllers\CoffeeHouse::class, 'checkout'])->name('checkout');
-
+    Route::get('/order', [\App\Http\Controllers\CoffeeHouse::class, 'order'])->name('order');
 });
 
 Route::prefix('login-admin')->group(function (){

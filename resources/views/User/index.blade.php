@@ -63,7 +63,7 @@
                         <div class="col-lg-3" style="margin-bottom: 20px">
                             <div class="product-item">
                                 <div class="product-image">
-                                    <a href="product-detail.html">
+                                    <a href="{{route('product-detail', $drink->drink_id)}}">
                                         <img src="{{asset('storage/Drink/'. $drink->image)}}" alt="Product Image">
                                     </a>
                                     <div class="product-action">

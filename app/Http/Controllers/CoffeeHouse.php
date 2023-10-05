@@ -141,6 +141,7 @@ class CoffeeHouse extends Controller
 
     public function checkout(Request $request) {
         $obj = new \App\Models\CoffeeHouse();
+        $customers = $obj->ID_checkout();
         $category= $obj->category();
         $payment = Payment::all();
         $cart = session('cart');
@@ -162,8 +163,21 @@ class CoffeeHouse extends Controller
         return view('User.checkout', [
             'categories' => $category,
             'payments' => $payment,
-            'drinks' => $drinks
+            'drinks' => $drinks,
+            'customers' => $customers
         ]);
     }
 
+    public function order(Request $request){
+        $obj = new \App\Models\CoffeeHouse();
+        $obj->payment = $request->payment;
+        $obj->name = $request->cus_name;
+        $obj->phone = $request->phone;
+        $obj->address = $request->address;
+        $obj->note = $request->note;
+        $obj->customer_id = $request->customer_id;
+        $obj->date = date('Y-m-d');
+        $obj->order();
+        return Redirect::route('CoffeeHouse');
+    }
 }

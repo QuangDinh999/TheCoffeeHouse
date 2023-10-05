@@ -26,6 +26,7 @@
         <form action="{{route('customer.login_process')}}">
             <h1>Sign in</h1>
             <span>or use your account</span>
+
             <input type="email" placeholder="Email" name="email"/>
             <input type="password" placeholder="Password" name="password"/>
             <a href="#">Forgot your password?</a>

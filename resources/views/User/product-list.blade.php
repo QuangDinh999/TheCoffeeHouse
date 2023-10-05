@@ -55,7 +55,7 @@
                             <div class="col-lg-3">
                                 <div class="product-item">
                                     <div class="product-image">
-                                        <a href="product-detail.html">
+                                        <a href="p{{route('product-detail', $drink->drink_id)}}">
                                             <img src="{{asset('storage/Drink/'. $drink->image)}}" alt="Product Image">
                                         </a>
                                         <div class="product-action">
@@ -65,7 +65,7 @@
                                         </div>
                                     </div>
                                     <div class="product-content">
-                                        <div class="title"><a href="#">{{$drink->drink_name}}</a></div>
+                                        <div class="title"><a href="{{route('product-detail', $drink->drink_id)}}">{{$drink->drink_name}}</a></div>
                                         <div class="ratting">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>

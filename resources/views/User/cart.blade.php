@@ -82,9 +82,9 @@
                                         </div>
                                     </td>
                                     <td>{{$value['size']}}</td>
-                                    <form action="{{route('delete_one', $drink)}}">
-                                        <td><button><i class="fa fa-trash"></i></button></td>
-                                    </form>
+                                    <td>
+                                        <a href="{{route('delete_one', $drink)}}" style="padding: 8px 12px; background: #cda566; color: #FFFFFF"><i class="fa fa-trash"></i></a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -123,7 +123,7 @@
                             </span></h4>
                     </div>
                     <div class="cart-btn">
-                        <a href="" style="padding: 12px 144px; border:solid #cda566 2px ">Delete Cart</a>
+                        <a href="{{route('delete_all')}}" style="padding: 12px 144px; border:solid #cda566 2px ">Delete Cart</a>
                         <button style="background: #cda566; color: #FFFFFF">Checkout</button>
                     </div>
                 </div>
