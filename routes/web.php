@@ -46,6 +46,10 @@ Route::prefix('login-customer')->group(function (){
     Route::get('/logout', [\App\Http\Controllers\CustomerController::class, 'logout'])->name('customer.logout');
 });
 
+Route::prefix('register')->group(function (){
+    Route::get('/', [\App\Http\Controllers\CustomerController::class, 'store'])->name('customer.register');
+});
+
 Route::middleware('AdminMiddleware')->prefix('/category')->group(function (){
     Route::get('/', [\App\Http\Controllers\CategoryController::class, 'index'])->name('category.index');
     Route::get('/create', [\App\Http\Controllers\CategoryController::class, 'create'])->name('category.create');
@@ -55,7 +59,7 @@ Route::middleware('AdminMiddleware')->prefix('/category')->group(function (){
     Route::delete('/{category}/destroy', [\App\Http\Controllers\CategoryController::class, 'destroy'])->name('category.destroy');
 });
 
-Route::middleware('AdminMiddleware')->prefix('/customer')->group(function (){
+Route::prefix('/customer')->group(function (){
     Route::get('/', [\App\Http\Controllers\CustomerController::class, 'index'])->name('customer.index');
     Route::get('/create', [\App\Http\Controllers\CustomerController::class, 'create'])->name('customer.create');
     Route::post('/create', [\App\Http\Controllers\CustomerController::class, 'store'])->name('customer.store');
@@ -108,4 +112,11 @@ Route::middleware('AdminMiddleware')->prefix('/drinksize')->group(function (){
     Route::get('/{drinkSize}/edit', [\App\Http\Controllers\DrinkSizeController::class, 'edit'])->name('drinksize.edit');
     Route::put('/{drinkSize}/edit', [\App\Http\Controllers\DrinkSizeController::class, 'update'])->name('drinksize.update');
     Route::delete('/{drinkSize}/destroy', [\App\Http\Controllers\DrinkSizeController::class, 'destroy'])->name('drinksize.destroy');
+});
+
+
+Route::middleware('AdminMiddleware')->prefix('/invoice')->group(function (){
+    Route::get('/', [\App\Http\Controllers\InvoiceController::class, 'index'])->name('invoice.index');
+    Route::get('/{id}/detail', [\App\Http\Controllers\DetailedInvoiceController::class, 'index'])->name('invoice.detail');
+
 });

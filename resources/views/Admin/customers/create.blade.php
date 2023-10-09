@@ -18,6 +18,8 @@
             <input type="password" name="cus_password" placeholder="Password..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
             <label>Phone: </label><br>
             <input type="text" name="phone" placeholder="Phone..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
+            <label>Adress: </label><br>
+            <input type="text" name="address" placeholder="Address..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
             <button class="btn btn-primary">Add New</button>
         </fieldset>
     </form>

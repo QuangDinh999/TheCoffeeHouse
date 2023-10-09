@@ -45,8 +45,9 @@ class CustomerController extends Controller
         $array = Arr::add($array, 'email', $request->cus_email);
         $array = Arr::add($array, 'password', bcrypt($request->cus_password));
         $array = Arr::add($array, 'phone', $request->phone);
+        $array = Arr::add($array, 'address', $request->address);
         Customer::create($array);
-        return Redirect::route('customer.index');
+        return Redirect::back();
     }
 
     /**

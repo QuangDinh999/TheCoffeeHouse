@@ -10,4 +10,8 @@ class Payment extends Model
     use HasFactory;
     public $timestamps = false;
     protected $fillable = ['payment_name'];
+
+    public function invoices() {
+        return $this->hasMany(Invoice::class);
+    }
 }

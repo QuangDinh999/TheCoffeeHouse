@@ -9,7 +9,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <button class="btn btn-primary">
-                <a href="{{route('customer.create')}}" style="text-decoration: none; color: white">Add User</a>
+                <a href="{{route('customer.create')}}" style="text-decoration: none; color: white">Add Invoice</a>
             </button>
         </div>
         <!-- /.panel-heading -->
@@ -18,36 +18,66 @@
                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>
                     <tr>
-                        <th>Customer ID</th>
-                        <th>Customer name</th>
-                        <th>Email</th>
-                        <th>Password</th>
-                        <th>Phone</th>
+                        <th>Invoice ID</th>
+                        <th>Người Đặt Hàng</th>
+                        <th>Người Nhận</th>
+                        <th>Địa Chỉ</th>
+                        <th>SĐT</th>
+                        <th>Ngày Đăt Hàng</th>
+                        <th>Ghi Chú</th>
+                        <th>Trạng Thái</th>
+                        <th>Kiểu Đơn Hàng</th>
+                        <th>Admin</th>
+                        <th>PTTT</th>
                         <th>Edit</th>
                         <th>Delete</th>
 
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($customers as $customer)
+                    @foreach($invoices as $invoice)
                         <tr>
-                            <td>{{$customer->id}}</td>
-                            <td>{{$customer->cus_name}}</td>
-                            <td>{{$customer->cus_email}}</td>
-                            <td>{{$customer->cus_password}}</td>
-                            <td>{{$customer->phone}}</td>
+                            <td>{{$invoice->id}}</td>
+                            <td>{{$invoice->customer->cus_name}}</td>
+                            <td>{{$invoice->customer_name}}</td>
+                            <td>{{$invoice->address}}</td>
+                            <td>{{$invoice->phone}}</td>
+                            <td>{{$invoice->invoice_date}}</td>
                             <td>
-                                <form action="{{route('customer.edit', $customer)}}">
-                                    <button class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                </form>
+                                @if($invoice->invoice_note == null)
+                                    {{'Không Có'}}
+                                @else
+                                    {{$invoice->invoice_note}}
+                                @endif
                             </td>
                             <td>
-                                <form method="post" action="{{route('customer.destroy', $customer)}}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                @if($invoice->invoice_status == 0)
+                                    {{'Đang Chờ'}}
+                                @else
+                                    {{'Đã Duyệt'}}
+                                @endif
+                            </td>
+                            <td>
+                                @if($invoice->invoice_type == 0)
+                                    {{'Online'}}
+                                @else
+                                    {{'Tại cửa Hàng'}}
+                                @endif
+                            </td>
+                            <td>{{$invoice->admin_id}}</td>
+                            <td>{{$invoice->payment->payment_name}}</td>
+                            <td>
+                                <form action="{{route('invoice.detail', $invoice->id)}}">
+                                    <button class="btn btn-warning"><i class="fa fa-info" aria-hidden="true"></i></button>
                                 </form>
                             </td>
+{{--                            <td>--}}
+{{--                                <form method="post" action="{{route('invoice.destroy', $invoice)}}">--}}
+{{--                                    @csrf--}}
+{{--                                    @method('DELETE')--}}
+{{--                                    <button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>--}}
+{{--                                </form>--}}
+{{--                            </td>--}}
                         </tr>
                     @endforeach
                     </tbody>

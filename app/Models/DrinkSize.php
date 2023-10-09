@@ -17,4 +17,6 @@ class DrinkSize extends Model
         return $this->belongsTo(Size::class);
     }
 
+
+
 }

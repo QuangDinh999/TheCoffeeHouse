@@ -5,15 +5,23 @@ namespace App\Http\Controllers;
 use App\Models\DetailedInvoice;
 use App\Http\Requests\StoreDetailedInvoiceRequest;
 use App\Http\Requests\UpdateDetailedInvoiceRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class DetailedInvoiceController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $obj = new DetailedInvoice();
+        $obj->id = $request->id;
+        $detail_invoice = $obj->index();
+
+        return view('Admin.invoices.detail_invoice', [
+            'detail_invoice' => $detail_invoice
+        ]);
     }
 
     /**
@@ -37,7 +45,7 @@ class DetailedInvoiceController extends Controller
      */
     public function show(DetailedInvoice $detailedInvoice)
     {
-        //
+
     }
 
     /**

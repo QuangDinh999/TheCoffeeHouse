@@ -22,6 +22,7 @@
                         <th>Customer name</th>
                         <th>Email</th>
                         <th>Phone</th>
+                        <th>address</th>
                         <th>Edit</th>
                         <th>Delete</th>
 
@@ -34,6 +35,7 @@
                                 <td>{{$customer->cus_name}}</td>
                                 <td>{{$customer->email}}</td>
                                 <td>{{$customer->phone}}</td>
+                                <td>{{$customer->address}}</td>
                                 <td>
                                     <form action="{{route('customer.edit', $customer)}}">
                                         <button class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i></button>

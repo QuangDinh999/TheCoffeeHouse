@@ -19,6 +19,8 @@
             <input type="password" name="cus_password" placeholder="Password..." value="{{$customer->cus_password}}" style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
             <label>Phone: </label><br>
             <input type="text" name="phone" placeholder="Phone..." value="{{$customer->phone}}" style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
+            <label>Address: </label><br>
+            <input type="text" name="address" placeholder="Address..." value="{{$customer->address}}" style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
             <button class="btn btn-primary">Update</button>
         </fieldset>
     </form>

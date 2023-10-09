@@ -124,7 +124,7 @@
                     </div>
                     <div class="cart-btn">
                         <a href="{{route('delete_all')}}" style="padding: 12px 144px; border:solid #cda566 2px ">Delete Cart</a>
-                        <button style="background: #cda566; color: #FFFFFF">Checkout</button>
+                            <button style="background: #cda566; color: #FFFFFF"><a href="{{route('checkout')}}" style="text-decoration: none; color: #FFFFFF">Checkout</a></button>
                     </div>
                 </div>
             </div>

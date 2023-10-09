@@ -35,6 +35,7 @@ class CategoryController extends Controller
     {
         $data = $request->all();
         Category::create($data);
+        flash()->addSuccess('Thêm Thành Công');
         return Redirect::route('category.index');
     }
 
@@ -63,6 +64,7 @@ class CategoryController extends Controller
     {
         $data = $request->all();
         $category->update($data);
+        flash()->addSuccess('Cập Nhật Thành Công');
         return Redirect::route('category.index');
     }
 
@@ -72,6 +74,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+        flash()->addSuccess('Xóa Thành Công');
         return Redirect::route('category.index');
     }
 }

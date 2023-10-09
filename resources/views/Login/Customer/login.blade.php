@@ -13,12 +13,14 @@
 <img src="{{asset('storage/logo/coffee.png')}}" width="200px" height="100px" style="margin-bottom: 10px">
 <div class="container" id="container">
     <div class="form-container sign-up-container">
-        <form action="#">
+        <form action="{{route('customer.register')}}">
             <h1>Create Account</h1>
             <span>or use your email for registration</span>
-            <input type="text" placeholder="Name"/>
-            <input type="email" placeholder="Email"/>
-            <input type="password" placeholder="Password"/>
+            <input type="text" placeholder="Name" name="cus_name"/>
+            <input type="email" placeholder="Email" name="cus_email"/>
+            <input type="password" placeholder="Password" name="cus_password"/>
+            <input type="text" placeholder="Phone" name="phone"/>
+            <input type="text" placeholder="Address" name="address"/>
             <button>Sign Up</button>
         </form>
     </div>

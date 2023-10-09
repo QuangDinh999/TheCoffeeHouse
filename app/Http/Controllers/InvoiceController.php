@@ -13,7 +13,10 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        //
+        $invoice = Invoice::with('payment', 'customer')->get();
+        return view('Admin.invoices.invoice', [
+            'invoices' => $invoice
+        ]);
     }
 
     /**
