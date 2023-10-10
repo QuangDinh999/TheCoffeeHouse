@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use function Laravel\Prompts\select;
 
 class CoffeeHouse extends Model
 {
@@ -103,5 +104,19 @@ class CoffeeHouse extends Model
             ]);
         }
         Session::forget('cart');
+    }
+
+    public function order_history() {
+        $email = session('customer.email');
+        $customer_id = DB::table('customers')->select('id')->where('email', $email)->get();
+
+        $order_hostory = DB::table('detailed_invoices')
+                        ->join('invoices', 'invoices.id', '=', 'detailed_invoices.invoice_id')
+                        ->join('drink_sizes', 'drink_sizes.id', '=', 'detailed_invoices.drinksize_id')
+                        ->join('drinks', 'drinks.id', '=', 'drink_sizes.drink_id')
+                        ->select('drink_name', 'image', 'quantity', 'price', 'invoice_date', 'invoice_status')
+                        ->where('invoices.customer_id', $customer_id[0]->id)->orderByDesc('invoice_date')->get();
+        return $order_hostory;
+
     }
 }

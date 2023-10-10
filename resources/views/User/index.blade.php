@@ -21,7 +21,6 @@
         <link href="{{asset('css_web/lib/slick/slick-theme.css')}}" rel="stylesheet">
 
         <!-- Template Stylesheet -->
-        <link rel="stylesheet" href="css_4/style.css">
         <link href="{{asset('css_web/style.css')}}" rel="stylesheet">
         <link href="{{asset('css_web/other.css')}}" rel="stylesheet">
         <link href="{{asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">

@@ -1,7 +1,7 @@
 @extends('Admin.tables')
 @section('heading')
     <div class="col-lg-12">
-        <h1 class="page-header">User</h1>
+        <h1 class="page-header">Invoice</h1>
     </div>
 @endsection
 
@@ -27,10 +27,11 @@
                         <th>Ghi Chú</th>
                         <th>Trạng Thái</th>
                         <th>Kiểu Đơn Hàng</th>
-                        <th>Admin</th>
+{{--                        <th>Admin</th>--}}
                         <th>PTTT</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+                        <th>Info</th>
+                        <th>Duyệt</th>
+                        <th>Đã Giao</th>
 
                     </tr>
                     </thead>
@@ -52,9 +53,11 @@
                             </td>
                             <td>
                                 @if($invoice->invoice_status == 0)
-                                    {{'Đang Chờ'}}
+                                   <span class="badge" style="background-color: #ffc107; color: black">{{'Đang Chờ'}}</span>
+                                @elseif($invoice->invoice_status == 1)
+                                    <span class="badge" style="background-color: #198754">{{'Đã Duyệt'}}</span>
                                 @else
-                                    {{'Đã Duyệt'}}
+                                    <span class="badge" style="background-color: #1295bf">{{'Đã Giao Hàng'}}</span>
                                 @endif
                             </td>
                             <td>
@@ -64,20 +67,27 @@
                                     {{'Tại cửa Hàng'}}
                                 @endif
                             </td>
-                            <td>{{$invoice->admin_id}}</td>
+{{--                            <td>{{$invoice->admin_id}}</td>--}}
                             <td>{{$invoice->payment->payment_name}}</td>
                             <td>
-                                <form action="{{route('invoice.detail', $invoice->id)}}">
-                                    <button class="btn btn-warning"><i class="fa fa-info" aria-hidden="true"></i></button>
+                                <form action="{{route('invoice.detail', $invoice->id)}}" style="text-align: center">
+                                    <button class="btn btn-warning" style="padding: 6px 18px"><i class="fa fa-info" aria-hidden="true"></i></button>
                                 </form>
                             </td>
-{{--                            <td>--}}
-{{--                                <form method="post" action="{{route('invoice.destroy', $invoice)}}">--}}
-{{--                                    @csrf--}}
-{{--                                    @method('DELETE')--}}
-{{--                                    <button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>--}}
-{{--                                </form>--}}
-{{--                            </td>--}}
+                            <td>
+                                    <form method="post" action="{{route('invoice.update', ['id' => $invoice->id, 'status' => $invoice->invoice_status])}}" style="text-align: center">
+                                    @csrf
+                                    @method('PUT')
+                                    <button class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                </form>
+                            </td>
+                            <td>
+                                <form method="post" action="{{route('invoice.shipping', ['id' => $invoice->id, 'status' => $invoice->invoice_status])}}" style="text-align: center">
+                                    @csrf
+                                    @method('PUT')
+                                    <button class="btn btn-info"><i class="fa fa-truck" aria-hidden="true"></i></button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

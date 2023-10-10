@@ -5,3 +5,7 @@
 .dropdown-item:hover {
     background-color: #CDA566;
 }
+
+td.white-td {
+    color: #0f0f0f;
+}

@@ -180,4 +180,14 @@ class CoffeeHouse extends Controller
         $obj->order();
         return Redirect::route('CoffeeHouse');
     }
+
+    public function my_account(){
+        $obj = new \App\Models\CoffeeHouse();
+        $category= $obj->category();
+        $order_history = $obj->order_history();
+        return view('User.my-account', [
+            'categories' => $category,
+            'order_history' => $order_history
+        ]);
+    }
 }

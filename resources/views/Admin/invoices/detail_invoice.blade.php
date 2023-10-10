@@ -8,6 +8,10 @@
 @section('content')
     <div class="panel panel-default">
         <div class="panel-heading">
+            <button class="btn btn-primary">
+                <a href="{{route('invoice.index')}}" style="text-decoration: none; color: white"><i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </a>
+            </button>
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body">
