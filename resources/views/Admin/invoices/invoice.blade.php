@@ -9,7 +9,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <button class="btn btn-primary">
-                <a href="{{route('customer.create')}}" style="text-decoration: none; color: white">Add Invoice</a>
+                <a href="{{route('invoice.create')}}" style="text-decoration: none; color: white">Add Invoice</a>
             </button>
         </div>
         <!-- /.panel-heading -->
@@ -27,7 +27,6 @@
                         <th>Ghi Chú</th>
                         <th>Trạng Thái</th>
                         <th>Kiểu Đơn Hàng</th>
-{{--                        <th>Admin</th>--}}
                         <th>PTTT</th>
                         <th>Info</th>
                         <th>Duyệt</th>
@@ -56,8 +55,10 @@
                                    <span class="badge" style="background-color: #ffc107; color: black">{{'Đang Chờ'}}</span>
                                 @elseif($invoice->invoice_status == 1)
                                     <span class="badge" style="background-color: #198754">{{'Đã Duyệt'}}</span>
-                                @else
+                                @elseif($invoice->invoice_status == 2)
                                     <span class="badge" style="background-color: #1295bf">{{'Đã Giao Hàng'}}</span>
+                                @else
+                                    <span class="badge" style="background-color: #9b202f">{{'Đã Hủy Đơn Hàng'}}</span>
                                 @endif
                             </td>
                             <td>

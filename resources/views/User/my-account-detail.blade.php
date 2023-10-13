@@ -16,7 +16,6 @@
     <!-- CSS Libraries -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.32/sweetalert2.min.css" rel="stylesheet">
     <link href="{{asset('css_web/lib/slick/slick.css')}}" rel="stylesheet">
     <link href="{{asset('css_web/lib/slick/slick-theme.css')}}" rel="stylesheet">
 
@@ -35,7 +34,8 @@
     <div class="container">
         <ul class="breadcrumb">
             <li class="breadcrumb-item"><a style="text-decoration: none; color: #6c757d" href="{{route('CoffeeHouse')}}">Home</a></li>
-            <li class="breadcrumb-item active">My Account</li>
+            <li class="breadcrumb-item"><a style="text-decoration: none; color: #6c757d" href="{{route('my-account')}}">My Account</a></li>
+            <li class="breadcrumb-item active">Chi Tiết Đơn Hàng</li>
         </ul>
     </div>
 </div>
@@ -48,7 +48,8 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link active" id="orders-nav" data-toggle="pill" href="#orders-tab" role="tab">Orders</a>
+                    <a class="nav-link active" id="orders-nav" data-toggle="pill" href="#orders-tab"
+                       role="tab">Orders</a>
                     <a class="nav-link" id="payment-nav" data-toggle="pill" href="#payment-tab" role="tab">Payment
                         Method</a>
                     <a class="nav-link" id="address-nav" data-toggle="pill" href="#address-tab" role="tab">address</a>
@@ -65,44 +66,22 @@
                                 <thead class="thead-dark">
                                 <tr>
                                     <th>No</th>
-                                    <th>Người Nhận</th>
-                                    <th>SĐT</th>
-                                    <th>Địa Chỉ Nhận Hàng</th>
-                                    <th>Ngày Order</th>
-                                    <th>Trạng Thái</th>
-                                    <th>Chi Tiết</th>
-                                    <th>Hủy Đơn Hàng</th>
+                                    <th>Sản Phẩm</th>
+                                    <th>Hình ảnh</th>
+                                    <th>Số Lượng</th>
+                                    <th>Gía mỗi loại</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($order_history as $history)
                                     <tr>
                                         <td style="color: black">{{$history->id}}</td>
-                                        <td style="color: black">{{$history->customer_name}}</td>
-                                        <td style="color: black">{{$history->phone}}</td>
-                                        <td style="color: black">{{$history->address}}</td>
-                                        <td style="color: black">{{$history->invoice_date}}</td>
-                                        <td>
-                                            @if($history->invoice_status == 0)
-                                                <span class="badge" style="background-color: #ffc107; color: black">{{'Chưa Được Duyệt'}}</span>
-                                            @elseif($history->invoice_status == 1)
-                                                <span class="badge" style="background-color: #198754">{{'Đang Giao Hàng'}}</span>
-                                            @elseif($history->invoice_status == 2)
-                                                <span class="badge" style="background-color: #1295bf">{{'Đã Giao Hàng'}}</span>
-                                            @else
-                                                <span class="badge" style="background-color: #9b202f">{{'Đã Hủy Đơn Hàng'}}</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <a style="padding: 8px 16px;text-decoration: none; background-color: #cda566; color: #FFFFFF"  href="{{route('my-account_detail',$history->id )}}"><i class="fa fa-info" aria-hidden="true"></i></a>
-                                        </td>
-                                        <td>
-                                               @if( $history->invoice_status == 2 || $history->invoice_status == 3)
-                                                <a style="padding: 8px 12px;text-decoration: none; background-color: #c23f1f; color: #FFFFFF"  {{"onclick= error()"}}><i class="fa fa-times-circle" aria-hidden="true"></i></a>
-                                               @else
-                                                <a style="padding: 8px 12px;text-decoration: none; background-color: #c23f1f; color: #FFFFFF" href="{{route('cancel_invoice',$history->id )}}" {{"onclick= DeleteShipping(event)"}}><i class="fa fa-times-circle" aria-hidden="true"></i></a>
-                                               @endif
-                                        </td>
+                                        <td style="color: black">{{$history->drink_name}}</td>
+                                        <td style="color: black"><img width="50px" height="50px" src="{{asset('storage/Drink/'. $history->image)}}" alt="Image"></td>
+                                        <td style="color: black">{{$history->quantity}}</td>
+                                        <td style="color: black">{{number_format($history->price_each_size)}} VNĐ</td>
+
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -190,52 +169,12 @@
 <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
 
-<script>
-    function DeleteShipping(ev) {
-        ev.preventDefault();
-        var urlToRedirect = ev.currentTarget.getAttribute('href');
-
-        Swal.fire({
-            title: 'Bạn có muốn Hủy Đơn Hàng ?',
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#cda566',
-            cancelButtonColor: '#85570d',
-            confirmButtonText: 'Hủy Đơn Hàng'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Bạn Đã Hủy Đơn Hàng Thành Công !',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-                window.location.href = urlToRedirect;
-            }
-        })
-    }
-
-    function error() {
-            Swal.fire({
-                position: 'center',
-                icon: 'error',
-                title: 'Bạn Không Thể Hủy Đơn Hàng',
-                text: 'Đơn Hàng Đã Được Huỷ Hoặc Vận Chuyển',
-                showConfirmButton: false,
-                timer: 1500
-            })
-    }
-</script>
-
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.32/sweetalert2.min.js"></script>
 <script src="{{asset('css_web/lib/easing/easing.min.js')}}"></script>
 <script src="{{asset('css_web/lib/slick/slick.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('bootstrap/js/bootstrap.js')}}"></script>
-
 
 
 <!-- Template Javascript -->

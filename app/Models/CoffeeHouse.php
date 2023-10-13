@@ -110,13 +110,33 @@ class CoffeeHouse extends Model
         $email = session('customer.email');
         $customer_id = DB::table('customers')->select('id')->where('email', $email)->get();
 
-        $order_hostory = DB::table('detailed_invoices')
-                        ->join('invoices', 'invoices.id', '=', 'detailed_invoices.invoice_id')
-                        ->join('drink_sizes', 'drink_sizes.id', '=', 'detailed_invoices.drinksize_id')
-                        ->join('drinks', 'drinks.id', '=', 'drink_sizes.drink_id')
-                        ->select('drink_name', 'image', 'quantity', 'price', 'invoice_date', 'invoice_status')
-                        ->where('invoices.customer_id', $customer_id[0]->id)->orderByDesc('invoice_date')->get();
-        return $order_hostory;
 
+        $order_history = DB::table('invoices')
+            ->select('invoices.id', 'customer_name', 'phone', 'address', 'invoice_date', 'invoice_status')
+            ->where('invoices.customer_id', $customer_id[0]->id)
+            ->orderBy('invoice_status', 'ASC')
+            ->orderBy('invoice_date', 'ASC')->get();
+        return $order_history;
+
+    }
+
+    public function order_history_detail() {
+        $email = session('customer.email');
+        $customer_id = DB::table('customers')->select('id')->where('email', $email)->get();
+
+
+        $order_history = DB::table('detailed_invoices')
+            ->join('invoices', 'invoices.id', '=', 'detailed_invoices.invoice_id')
+            ->join('drink_sizes', 'drink_sizes.id', '=', 'detailed_invoices.drinksize_id')
+            ->join('drinks', 'drinks.id', '=', 'drink_sizes.drink_id')
+            ->select('invoices.id', 'drink_name', 'image', 'quantity', 'price_each_size')
+            ->where('invoices.id', $this->id)
+            ->orderBy('invoice_status', 'ASC')
+            ->orderBy('invoice_date', 'ASC')->get();
+        return $order_history;
+    }
+
+    public function cancel_invoice() {
+        DB::table('invoices')->where('id', $this->id)->update(['invoice_status' => 3]);
     }
 }

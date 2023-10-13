@@ -31,9 +31,11 @@ class CoffeeHouse extends Controller
     public function search( Request $request) {
         $obj = new \App\Models\CoffeeHouse();
         $obj->search = $request->search_word;
+        $category= $obj->category();
         $search = $obj->search();
         return view('user.search', [
-            'searching' => $search
+            'searching' => $search,
+            'categories' => $category
         ]);
     }
 
@@ -189,5 +191,24 @@ class CoffeeHouse extends Controller
             'categories' => $category,
             'order_history' => $order_history
         ]);
+    }
+
+    public function my_account_detail(Request $request){
+        $obj = new \App\Models\CoffeeHouse();
+        $category= $obj->category();
+        $obj->id = $request->id;
+        $order_history = $obj->order_history_detail();
+        return view('User.my-account-detail', [
+            'categories' => $category,
+            'order_history' => $order_history
+        ]);
+    }
+
+    public function cancel_invoice(Request $request) {
+        $obj = new \App\Models\CoffeeHouse();
+        $obj->id = $request->id;
+        $obj->cancel_invoice();
+
+        return Redirect::back();
     }
 }

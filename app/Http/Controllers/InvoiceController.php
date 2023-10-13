@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Invoice;
 use App\Http\Requests\StoreInvoiceRequest;
 use App\Http\Requests\UpdateInvoiceRequest;
+use App\Models\Payment;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Redirect;
 
 class InvoiceController extends Controller
@@ -14,7 +16,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $invoice = Invoice::with('payment', 'customer')->orderByDesc('id')->get();
+        $invoice = Invoice::with('payment', 'customer')->orderBy('invoices.id', 'DESC')->get();
         return view('Admin.invoices.invoice', [
             'invoices' => $invoice
         ]);
@@ -25,7 +27,10 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        //
+        $payment = Payment::all();
+        return view('Admin.invoices.create', [
+           'payments' => $payment
+        ]);
     }
 
     /**
@@ -33,7 +38,18 @@ class InvoiceController extends Controller
      */
     public function store(StoreInvoiceRequest $request)
     {
-        //
+        $array = array();
+        $array = Arr::add($array, 'invoice_date', $request->date);
+        $array = Arr::add($array, 'customer_name', $request->customer);
+        $array = Arr::add($array, 'address', $request->address);
+        $array = Arr::add($array, 'payment_id', $request->payment);
+        $array = Arr::add($array, 'invoice_status', 1);
+        $array = Arr::add($array, 'invoice_type', 1);
+        $array = Arr::add($array, 'customer_id', 12);
+        $array = Arr::add($array, 'admin_id', 4);
+
+        Invoice::create($array);
+        return Redirect::route('invoice.index');
     }
 
     /**
