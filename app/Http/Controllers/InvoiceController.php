@@ -16,7 +16,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $invoice = Invoice::with('payment', 'customer')->orderBy('invoices.id', 'DESC')->get();
+        $invoice = Invoice::with('payment', 'customer')->get();
         return view('Admin.invoices.invoice', [
             'invoices' => $invoice
         ]);
@@ -38,18 +38,7 @@ class InvoiceController extends Controller
      */
     public function store(StoreInvoiceRequest $request)
     {
-        $array = array();
-        $array = Arr::add($array, 'invoice_date', $request->date);
-        $array = Arr::add($array, 'customer_name', $request->customer);
-        $array = Arr::add($array, 'address', $request->address);
-        $array = Arr::add($array, 'payment_id', $request->payment);
-        $array = Arr::add($array, 'invoice_status', 1);
-        $array = Arr::add($array, 'invoice_type', 1);
-        $array = Arr::add($array, 'customer_id', 12);
-        $array = Arr::add($array, 'admin_id', 4);
 
-        Invoice::create($array);
-        return Redirect::route('invoice.index');
     }
 
     /**

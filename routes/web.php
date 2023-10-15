@@ -21,7 +21,6 @@ Route::prefix('CoffeeHouse')->group(function (){
     Route::get('/search', [\App\Http\Controllers\CoffeeHouse::class, 'search'])->name('search');
     Route::get('/{id}/category', [\App\Http\Controllers\CoffeeHouse::class, 'category'])->name('category');
     Route::get('/{id}/product-detail', [\App\Http\Controllers\CoffeeHouse::class, 'product_detail'])->name('product-detail');
-
 });
 Route::middleware('CustomerMiddleware')->prefix('my-account')->group(function (){
     Route::get('/', [\App\Http\Controllers\CoffeeHouse::class, 'my_account'])->name('my-account');
@@ -110,6 +109,7 @@ Route::middleware('AdminMiddleware')->prefix('/admins')->group(function (){
     Route::get('/{admin}/edit', [\App\Http\Controllers\AdminController::class, 'edit'])->name('admin.edit');
     Route::put('/{admin}/edit', [\App\Http\Controllers\AdminController::class, 'update'])->name('admin.update');
     Route::delete('/{admin}/destroy', [\App\Http\Controllers\AdminController::class, 'destroy'])->name('admin.destroy');
+    Route::get('/dashboard', [\App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard');
 });
 
 Route::middleware('AdminMiddleware')->prefix('/drinksize')->group(function (){
@@ -125,7 +125,12 @@ Route::middleware('AdminMiddleware')->prefix('/drinksize')->group(function (){
 Route::middleware('AdminMiddleware')->prefix('/invoice')->group(function (){
     Route::get('/', [\App\Http\Controllers\InvoiceController::class, 'index'])->name('invoice.index');
     Route::get('/create', [\App\Http\Controllers\InvoiceController::class, 'create'])->name('invoice.create');
-    Route::post('/create', [\App\Http\Controllers\InvoiceController::class, 'store'])->name('invoice.store');
+//    Route::post('/create', [\App\Http\Controllers\InvoiceController::class, 'store'])->name('invoice.store');
+    Route::get('/drink_list', [\App\Http\Controllers\DetailedInvoiceController::class, 'create'])->name('invoice.create_detail');
+    Route::get('/{id}/drink_detail', [\App\Http\Controllers\DetailedInvoiceController::class, 'drink_detail'])->name('invoice.drink_detail');
+    Route::get('/{id}/add_drink_detail', [\App\Http\Controllers\DetailedInvoiceController::class, 'add_drink_detail'])->name('invoice.add_drink_detail');
+    Route::get('/delete_detail', [\App\Http\Controllers\DetailedInvoiceController::class, 'delete_detail'])->name('invoice.delete_detail');
+    Route::post('/add_detail_invoice', [\App\Http\Controllers\DetailedInvoiceController::class, 'store'])->name('invoice.add_detail_invoice');
     Route::get('/{id}/detail', [\App\Http\Controllers\DetailedInvoiceController::class, 'index'])->name('invoice.detail');
     Route::put('/{id}/{status}/approval', [\App\Http\Controllers\InvoiceController::class, 'update'])->name('invoice.update');
     Route::put('/{id}/{status}/shipping', [\App\Http\Controllers\InvoiceController::class, 'updateShipping'])->name('invoice.shipping');

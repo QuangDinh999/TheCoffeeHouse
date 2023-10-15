@@ -9,12 +9,12 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <button class="btn btn-primary">
-                <a href="{{route('invoice.create')}}" style="text-decoration: none; color: white">Add Invoice</a>
+                <a href="{{route('invoice.create_detail')}}" style="text-decoration: none; color: white">Add Invoice</a>
             </button>
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body">
-            <div class="table-responsive">
+
                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>
                     <tr>
@@ -35,6 +35,7 @@
                     </tr>
                     </thead>
                     <tbody>
+
                     @foreach($invoices as $invoice)
                         <tr>
                             <td>{{$invoice->id}}</td>
@@ -57,6 +58,8 @@
                                     <span class="badge" style="background-color: #198754">{{'Đã Duyệt'}}</span>
                                 @elseif($invoice->invoice_status == 2)
                                     <span class="badge" style="background-color: #1295bf">{{'Đã Giao Hàng'}}</span>
+                                @elseif($invoice->invoice_status == 3)
+                                    <span class="badge" style="background-color: #bb9658">{{'Paid'}}</span>
                                 @else
                                     <span class="badge" style="background-color: #9b202f">{{'Đã Hủy Đơn Hàng'}}</span>
                                 @endif
@@ -94,7 +97,7 @@
                     </tbody>
 
                 </table>
-            </div>
+
 
         </div>
     </div>

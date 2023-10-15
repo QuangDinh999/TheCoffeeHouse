@@ -22,7 +22,6 @@ class DrinkController extends Controller
         return view('Admin.drinks.drink', [
             'drinks' => $drink
         ]);
-
     }
 
 

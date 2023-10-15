@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\DetailedInvoice;
 use App\Http\Requests\StoreDetailedInvoiceRequest;
 use App\Http\Requests\UpdateDetailedInvoiceRequest;
+use App\Models\Drink;
+use App\Models\DrinkSize;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -29,15 +31,63 @@ class DetailedInvoiceController extends Controller
      */
     public function create()
     {
-        //
+        $drink = Drink::with('category')->get();
+        return view('Admin.invoices.create_detail_invoice', [
+            'drinks' => $drink
+        ]);
     }
 
+    public function drink_detail(Request $request) {
+        $drinksize = DrinkSize::where('drink_id', $request->id)->get();
+        return view('Admin.invoices.drink_detail', [
+            'drinksizes' => $drinksize
+        ]);
+    }
+
+    public function add_drink_detail(Request $request) {
+        $id = $request->id;
+        $quantity = $request->quantity;
+        if(session()->has('invoice')){
+            $invoice = session('invoice');
+            if(isset($invoice[$id])){
+                $invoice[$id]+= $quantity;
+            }else{
+                $invoice[$id] = $quantity;
+            }
+            session(['invoice' => $invoice]);
+        }else{
+            $invoice = [];
+            $invoice[$id] = $quantity;
+            session(['invoice' => $invoice]);
+        }
+        flash()->addSuccess('Thêm sản phẩm thành công vào hóa đơn');
+        return Redirect::back();
+    }
+
+    public function delete_detail() {
+        session()->forget('invoice');
+        $invoice = array();
+        session(['invoice' => $invoice]);
+        return Redirect::back();
+    }
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreDetailedInvoiceRequest $request)
     {
-        //
+        $obj = new DetailedInvoice();
+        $obj->payment = $request->payment;
+        $obj->name = $request->customer;
+        $obj->address = $request->address;
+        $obj->date = $request->date;
+
+        $result = $obj->store();
+        if($result == 1){
+            flash()->addSuccess('Thêm Hóa Đơn Thành Công !');
+        }else {
+            flash()->addError('Chưa Thêm sản phẩm vào Hóa Đơn');
+        }
+        return Redirect::route('invoice.create_detail');
     }
 
     /**

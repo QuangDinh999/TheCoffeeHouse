@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-    <form method="post" action="">
+    <form method="post" action="{{route('invoice.add_detail_invoice')}}">
         @csrf
         <fieldset>
             <legend>ADD NEW</legend>

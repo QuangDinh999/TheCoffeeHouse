@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class DetailedInvoice extends Model
 {
@@ -18,5 +19,38 @@ class DetailedInvoice extends Model
                         ->join('sizes', 'sizes.id', "=", "drink_sizes.size_id")
                         ->where('detailed_invoices.invoice_id', $this->id)->get();
         return $detail_invoice;
+    }
+
+    public function store() {
+        if (session()->has('invoice')){
+            DB::table('invoices')->insert([
+                'invoice_date' => $this->date,
+                'invoice_status' => 1,
+                'invoice_type' => 1,
+                'customer_name' => $this->name,
+                'address' => $this->address,
+                'customer_id' => 12,
+                'admin_id' => 4,
+                'payment_id' => $this->payment
+            ]);
+
+            $invoice_id = DB::table('invoices')->where('customer_id', 12)->max('id');
+            $invoice = session('invoice');
+            foreach ($invoice as $id => $quantity){
+                $price = DB::table('drink_sizes')->select('price_each_size')->where('id', $id)->get();
+
+                $total_price = $price[0]->price_each_size*$quantity;
+                DB::table('detailed_invoices')->insert([
+                    'drinksize_id' => $id,
+                    'invoice_id' => $invoice_id,
+                    'quantity' => $quantity,
+                    'price' => $total_price
+                ]);
+            }
+            Session::forget('invoice');
+            return 1;
+        }else{
+            return 2;
+        }
     }
 }
