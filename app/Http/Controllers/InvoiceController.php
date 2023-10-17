@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\Invoice;
 use App\Http\Requests\StoreInvoiceRequest;
 use App\Http\Requests\UpdateInvoiceRequest;
@@ -16,8 +17,28 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $invoice = Invoice::with('payment', 'customer')->get();
+        $invoice = Invoice::with('payment', 'customer')->orderBy('invoice_status', 'ASC')->get();
         return view('Admin.invoices.invoice', [
+            'invoices' => $invoice
+        ]);
+    }
+
+    public function new_invoice()
+    {
+        $invoice = Invoice::with('payment', 'customer')->where('invoice_status', 0)->get();
+        return view('Admin.invoices.new-invoice', [
+            'invoices' => $invoice
+        ]);
+    }
+
+    public function income_invoice()
+    {
+        $invoice = Invoice::with('payment', 'customer')
+            ->where('invoice_status', 2)
+            ->orWhere('invoice_status', 3)
+            ->orderBy('invoice_status', 'ASC')
+            ->get();
+        return view('Admin.invoices.income-invoice', [
             'invoices' => $invoice
         ]);
     }
@@ -27,10 +48,7 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        $payment = Payment::all();
-        return view('Admin.invoices.create', [
-           'payments' => $payment
-        ]);
+
     }
 
     /**
@@ -64,9 +82,10 @@ class InvoiceController extends Controller
     {
         $id = $request->id;
         $status = $request->status;
+        $admin_id = Admin::where('email', session('admin.email'))->select('id')->get();
         if($status == 0) {
-            Invoice::where('id', $id)->update(['invoice_status' => 1]);
-            flash()->addSuccess('Duyệt Đơn Hàng Thành Công !');
+            Invoice::where('id', $id)->update(['invoice_status' => 1, 'admin_id' => $admin_id[0]->id]);
+            flash()->addSuccess('Admin '.session('admin.email').' Duyệt Đơn Hàng Thành Công !');
         }else {
             flash()->addError('Duyệt Đơn Hàng Không Thành Công, Đơn Hàng Đã Được Duyệt !');
         }

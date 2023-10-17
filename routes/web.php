@@ -65,7 +65,7 @@ Route::middleware('AdminMiddleware')->prefix('/category')->group(function (){
     Route::delete('/{category}/destroy', [\App\Http\Controllers\CategoryController::class, 'destroy'])->name('category.destroy');
 });
 
-Route::prefix('/customer')->group(function (){
+Route::middleware('AdminMiddleware')->prefix('/customer')->group(function (){
     Route::get('/', [\App\Http\Controllers\CustomerController::class, 'index'])->name('customer.index');
     Route::get('/create', [\App\Http\Controllers\CustomerController::class, 'create'])->name('customer.create');
     Route::post('/create', [\App\Http\Controllers\CustomerController::class, 'store'])->name('customer.store');
@@ -124,7 +124,9 @@ Route::middleware('AdminMiddleware')->prefix('/drinksize')->group(function (){
 
 Route::middleware('AdminMiddleware')->prefix('/invoice')->group(function (){
     Route::get('/', [\App\Http\Controllers\InvoiceController::class, 'index'])->name('invoice.index');
-    Route::get('/create', [\App\Http\Controllers\InvoiceController::class, 'create'])->name('invoice.create');
+    Route::get('/new-order', [\App\Http\Controllers\InvoiceController::class, 'new_invoice'])->name('invoice.new_invoice');
+    Route::get('/income-invoice', [\App\Http\Controllers\InvoiceController::class, 'income_invoice'])->name('invoice.income-invoice');
+    Route::get('/create', [\App\Http\Controllers\DetailedInvoiceController::class, 'invoice_display'])->name('invoice.create');
 //    Route::post('/create', [\App\Http\Controllers\InvoiceController::class, 'store'])->name('invoice.store');
     Route::get('/drink_list', [\App\Http\Controllers\DetailedInvoiceController::class, 'create'])->name('invoice.create_detail');
     Route::get('/{id}/drink_detail', [\App\Http\Controllers\DetailedInvoiceController::class, 'drink_detail'])->name('invoice.drink_detail');
@@ -134,5 +136,4 @@ Route::middleware('AdminMiddleware')->prefix('/invoice')->group(function (){
     Route::get('/{id}/detail', [\App\Http\Controllers\DetailedInvoiceController::class, 'index'])->name('invoice.detail');
     Route::put('/{id}/{status}/approval', [\App\Http\Controllers\InvoiceController::class, 'update'])->name('invoice.update');
     Route::put('/{id}/{status}/shipping', [\App\Http\Controllers\InvoiceController::class, 'updateShipping'])->name('invoice.shipping');
-
 });

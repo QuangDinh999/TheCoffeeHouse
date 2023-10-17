@@ -24,7 +24,6 @@ class Admin extends Model implements \Illuminate\Contracts\Auth\Authenticatable
             ->whereYear('invoice_date', date('Y'))
             ->whereMonth('invoice_date', date('n'))->get();
          return $invoice;
-
     }
 
 

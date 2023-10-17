@@ -7,6 +7,7 @@ use App\Http\Requests\StoreDetailedInvoiceRequest;
 use App\Http\Requests\UpdateDetailedInvoiceRequest;
 use App\Models\Drink;
 use App\Models\DrinkSize;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -64,10 +65,39 @@ class DetailedInvoiceController extends Controller
         return Redirect::back();
     }
 
+    public function invoice_display() {
+        $obj = new DetailedInvoice();
+        $invoice = session('invoice');
+        $drinks = array();
+        if (empty(session('invoice'))){
+            $invoice = [];
+            session(['cart' => $invoice]);
+        }else {
+            foreach ($invoice as $id => $quantity) {
+                $obj->id = $id;
+                $drinkcart = $obj->drinkcart();
+                foreach ($drinkcart as $drink) {
+                    $drinks[$id]['name'] = $drink->drink_name;
+                    $drinks[$id]['image'] = $drink->image;
+                    $drinks[$id]['price'] = $drink->price_each_size;
+                    $drinks[$id]['size'] = $drink->size;
+                    $drinks[$id]['quantity'] = $quantity;
+                    $drinks[$id]['price_subtotal'] = $quantity * $drink->price_each_size;
+                }
+            }
+        }
+        $payment = Payment::all();
+        return view('Admin.invoices.create', [
+            'payments' => $payment,
+            'drinks' => $drinks
+        ]);
+    }
+
     public function delete_detail() {
         session()->forget('invoice');
         $invoice = array();
         session(['invoice' => $invoice]);
+        flash()->addSuccess('Làm mới hóa đơn thành công');
         return Redirect::back();
     }
     /**
@@ -83,11 +113,11 @@ class DetailedInvoiceController extends Controller
 
         $result = $obj->store();
         if($result == 1){
-            flash()->addSuccess('Thêm Hóa Đơn Thành Công !');
+            flash()->addSuccess('Admin '.session('admin.email').' Thêm Hóa Đơn Thành Công !');
         }else {
             flash()->addError('Chưa Thêm sản phẩm vào Hóa Đơn');
         }
-        return Redirect::route('invoice.create_detail');
+        return Redirect::route('invoice.index');
     }
 
     /**

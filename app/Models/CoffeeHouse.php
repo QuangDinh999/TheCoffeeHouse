@@ -86,15 +86,12 @@ class CoffeeHouse extends Model
             'address' => $this->address,
             'phone' => $this->phone,
             'customer_id' => $this->customer_id,
-            'admin_id' => 4,
             'payment_id' => $this->payment
         ]);
-
         $invoice_id = DB::table('invoices')->where('customer_id', $this->customer_id)->max('id');
         $cart = session('cart');
         foreach ($cart as $id => $quantity){
             $price = DB::table('drink_sizes')->select('price_each_size')->where('id', $id)->get();
-
             $total_price = $price[0]->price_each_size*$quantity;
             DB::table('detailed_invoices')->insert([
                 'drinksize_id' => $id,

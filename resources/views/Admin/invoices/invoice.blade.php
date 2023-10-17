@@ -9,13 +9,12 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <button class="btn btn-primary">
-                <a href="{{route('invoice.create_detail')}}" style="text-decoration: none; color: white">Add Invoice</a>
+                <a href="{{route('invoice.create')}}" style="text-decoration: none; color: white">Add Invoice</a>
             </button>
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body">
-
-                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                <table class="table table-striped table-bordered table-hover">
                     <thead>
                     <tr>
                         <th>Invoice ID</th>
@@ -23,7 +22,7 @@
                         <th>Người Nhận</th>
                         <th>Địa Chỉ</th>
                         <th>SĐT</th>
-                        <th>Ngày Đăt Hàng</th>
+                        <th>Ngày Đặt Hàng</th>
                         <th>Ghi Chú</th>
                         <th>Trạng Thái</th>
                         <th>Kiểu Đơn Hàng</th>
@@ -31,11 +30,9 @@
                         <th>Info</th>
                         <th>Duyệt</th>
                         <th>Đã Giao</th>
-
                     </tr>
                     </thead>
                     <tbody>
-
                     @foreach($invoices as $invoice)
                         <tr>
                             <td>{{$invoice->id}}</td>
@@ -71,7 +68,6 @@
                                     {{'Tại cửa Hàng'}}
                                 @endif
                             </td>
-{{--                            <td>{{$invoice->admin_id}}</td>--}}
                             <td>{{$invoice->payment->payment_name}}</td>
                             <td>
                                 <form action="{{route('invoice.detail', $invoice->id)}}" style="text-align: center">

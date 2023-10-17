@@ -9,7 +9,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <button class="btn btn-primary">
-                <a href="{{route('invoice.create')}}" style="text-decoration: none; color: white">Tạo Hóa Đơn</a>
+                <a href="{{route('invoice.create')}}" style="text-decoration: none; color: white"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
             </button>
             <button class="btn btn-primary">
                 <a href="{{route('invoice.delete_detail')}}" style="text-decoration: none; color: white">Xóa Hóa Đơn chi tiết</a>

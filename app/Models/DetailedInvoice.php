@@ -23,14 +23,15 @@ class DetailedInvoice extends Model
 
     public function store() {
         if (session()->has('invoice')){
+            $admin_id = DB::table('admins')->where('email', session('admin.email'))->select('id')->get();
             DB::table('invoices')->insert([
                 'invoice_date' => $this->date,
-                'invoice_status' => 1,
+                'invoice_status' => 3,
                 'invoice_type' => 1,
                 'customer_name' => $this->name,
                 'address' => $this->address,
                 'customer_id' => 12,
-                'admin_id' => 4,
+                'admin_id' => $admin_id[0]->id,
                 'payment_id' => $this->payment
             ]);
 
@@ -52,5 +53,13 @@ class DetailedInvoice extends Model
         }else{
             return 2;
         }
+    }
+
+    public function drinkcart() {
+        $drinkcart = DB::table('drink_sizes')
+            ->join('drinks', 'drink_sizes.drink_id', "=", "drinks.id")
+            ->join('sizes', 'drink_sizes.size_id', "=", "sizes.id")
+            ->where('drink_sizes.id', $this->id)->get();
+        return $drinkcart;
     }
 }

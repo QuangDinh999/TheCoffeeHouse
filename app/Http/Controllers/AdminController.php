@@ -6,6 +6,7 @@ use App\Http\Middleware\Authenticate;
 use App\Models\Admin;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
+use App\Models\Customer;
 use App\Models\Invoice;
 use \Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -49,6 +50,7 @@ class AdminController extends Controller
 
     public function dashboard() {
         $orders = Invoice::where('invoice_status', 0)->count();
+        $user = Customer::count();
         $obj = new Admin();
         $incomeInMonth = $obj->getIncome();
         $incomes = 0;
@@ -59,7 +61,8 @@ class AdminController extends Controller
 
         return view('Admin.dashboard', [
             'orders' => $orders,
-            'incomes' => $incomes
+            'incomes' => $incomes,
+            'user' => $user
         ]);
     }
 

@@ -25,12 +25,9 @@
                         <th>description</th>
                         <th>Edit</th>
                         <th>Delete</th>
-
-
                     </tr>
                     </thead>
                     <tbody>
-
                     @foreach($drinks as $drink)
                         <tr>
                             <td>{{$drink->id}}</td>
