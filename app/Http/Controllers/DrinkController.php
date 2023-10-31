@@ -6,7 +6,8 @@ use App\Models\Category;
 use App\Models\Drink;
 use App\Http\Requests\StoreDrinkRequest;
 use App\Http\Requests\UpdateDrinkRequest;
-use http\Env\Request;
+use App\Models\DrinkSize;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
@@ -52,6 +53,7 @@ class DrinkController extends Controller
         $obj->description = $request->description;
         $obj->category_id = $request->category_id;
         $obj->store();
+        flash()->addSuccess('Thêm Thành Công');
         return Redirect::route('drink.index');
     }
 
@@ -96,6 +98,7 @@ class DrinkController extends Controller
         $array =Arr::add($array, 'image', $image_name);
 
         $drink->update($array);
+        flash()->addSuccess('Cập Nhật Thành Công');
         return Redirect::route('drink.index');
     }
 
@@ -105,6 +108,15 @@ class DrinkController extends Controller
     public function destroy(Drink $drink)
     {
         $drink->delete();
+        flash()->addSuccess('Xóa Thành Công');
         return Redirect::route('drink.index');
+    }
+
+    public function size_detail(Request $request) {
+        $id = $request->id;
+        $size = DrinkSize::with('drink')->where('drink_id', $id)->get();
+        return view('Admin.drinks.drinksize', [
+           'drinksizes' => $size
+        ]);
     }
 }

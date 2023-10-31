@@ -16,6 +16,7 @@
     <!-- CSS Libraries -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.32/sweetalert2.min.css" rel="stylesheet">
     <link href="{{asset('css_web/lib/slick/slick.css')}}" rel="stylesheet">
     <link href="{{asset('css_web/lib/slick/slick-theme.css')}}" rel="stylesheet">
 
@@ -52,21 +53,21 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <input type="hidden" name="customer_id" value="{{$customer->id}}">
-                                    <label>First Name</label>
-                                    <input class="form-control" type="text" value="{{$customer->cus_name}}" name="cus_name" placeholder="First Name">
+                                    <label style="color: #131313">Tên Người Nhận </label>
+                                    <input class="form-control" required type="text" value="{{$customer->cus_name}}" name="cus_name" placeholder="First Name">
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label>Mobile No</label>
-                                    <input class="form-control" type="text" value="{{$customer->phone}}" name="phone" placeholder="Mobile No">
+                                    <label style="color: #131313">Só điện thoại</label>
+                                    <input class="form-control" required type="text" value="{{$customer->phone}}" name="phone" placeholder="Mobile No">
                                 </div>
                                 <div class="col-md-12">
-                                    <label>Address</label>
-                                    <input class="form-control" type="text" value="{{$customer->address}}" name="address" placeholder="Address">
+                                    <label style="color: #131313">Địa Chỉ</label>
+                                    <input class="form-control" required type="text" value="{{$customer->address}}" name="address" placeholder="Address">
                                 </div>
                                 <div class="col-md-12">
-                                    <label>Address</label>
-                                    <input class="form-control" type="text" value="" name="note" placeholder="Note">
+                                    <label style="color: #131313">Note</label>
+                                    <input class="form-control"  type="text" value="" name="note" placeholder="Note">
                                 </div>
                             </div>
                         @endforeach
@@ -80,7 +81,6 @@
                             @foreach($drinks as $drink => $value)
                                 <p>{{$value['drink_name']}} X {{$value['quantity']}}<span>{{number_format($value['price_subtotal'])}} VNĐ</span></p>
                             @endforeach
-                            <p class="ship-cost">Shipping Cost<span>$1</span></p>
                             <h4>Grand Total
                                 <span>
                                     @php
@@ -103,7 +103,7 @@
                             @foreach($payments as $payment)
                                 <div class="payment-method">
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" id="{{$payment->id}}" value="{{$payment->id}}" name="payment">
+                                        <input type="radio" required class="custom-control-input" id="{{$payment->id}}" value="{{$payment->id}}" name="payment">
                                         <label class="custom-control-label" for="{{$payment->id}}">{{$payment->payment_name}}</label>
                                     </div>
                                 </div>
@@ -124,6 +124,27 @@
 @include('User.footer.footer')
 
 
+<script>
+     function Success() {
+         Swal.fire({
+             position: 'center',
+             icon: 'success',
+             title: 'Bạn Đã Đặt Hàng Thành Công !',
+             showConfirmButton: false,
+             timer: 1500
+         })
+     }
+
+     function failed() {
+         Swal.fire({
+             position: 'center',
+             icon: 'error',
+             title: 'Hãy Điền đây đủ thông tin hóa đơn !',
+             showConfirmButton: false,
+             timer: 1500
+         })
+     }
+</script>
 <!-- Back to Top -->
 <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
@@ -131,6 +152,7 @@
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.32/sweetalert2.min.js"></script>
 <script src="{{asset('css_web/lib/easing/easing.min.js')}}"></script>
 <script src="{{asset('css_web/lib/slick/slick.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('bootstrap/js/bootstrap.js')}}"></script>

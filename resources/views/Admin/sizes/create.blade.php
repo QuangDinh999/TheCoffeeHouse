@@ -11,7 +11,7 @@
         <fieldset>
             <legend>ADD NEW</legend>
             <label>Size: </label><br>
-            <input type="text" name="size" placeholder="size..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
+            <input type="text" required name="size" placeholder="size..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
             <button class="btn btn-primary">Add New</button>
         </fieldset>
     </form>

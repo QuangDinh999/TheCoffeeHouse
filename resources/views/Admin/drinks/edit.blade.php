@@ -13,11 +13,11 @@
             <legend>EDIT</legend>
             <div class="col-lg-6">
                 <label>Drink Name: </label><br>
-                <input type="text" name="drink_name" placeholder="Name..."
+                <input type="text" required name="drink_name" placeholder="Name..."
                        style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"
                        value="{{$drink->drink_name}}"><br>
                 <label>Description: </label><br>
-                <input type="text" name="description" placeholder="description..."
+                <input type="text" required name="description" placeholder="description..."
                        style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"
                        value="{{$drink->description}}"><br>
                 <label>Category: </label><br>

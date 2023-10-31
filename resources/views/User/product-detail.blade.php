@@ -70,10 +70,10 @@
                                 </div>
                                 <form action="{{route('add_cart_product_detail')}}">
                                     <div class="action" style="margin-bottom: 12px; ">
-                                        <h4 style="color: black; display: inline-block">Đặt Hàng</h4><button style="background:#CDA566; color: #FFFFFF; border: solid 2px #CDA566; padding: 6px">Đặt Giao Tận Nơi <i class="fa fa-cart-plus"></i></button>
+                                        <h5 style="color: #666666;margin-right: 4px ; display: inline-block"><b>Đặt Hàng: </b></h5><button style="background:#CDA566; color: #FFFFFF; border: solid 2px #CDA566; padding: 6px">Đặt Giao Tận Nơi <i class="fa fa-cart-plus"></i></button>
                                     </div>
                                     <div class="option-size">
-                                        <h4>Chọn Size:</h4>
+                                        <h4><b>Chọn Size:</b></h4>
                                         <div class="opt">
                                             <select name="id" style="width: 180px">
                                                 @foreach($drinksizes as $drinksize)

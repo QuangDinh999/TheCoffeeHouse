@@ -9,7 +9,7 @@
     <form method="post" action="">
         @csrf
         @method('PUT')
-        Name: <input type="text" name="category_name" style="border:solid #337ab7 2px" value="{{$category->category_name}}">
+        Name: <input type="text" required name="category_name" style="border:solid #337ab7 2px" value="{{$category->category_name}}">
         <button>Update</button>
     </form>
 @endsection

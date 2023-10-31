@@ -9,7 +9,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <button class="btn btn-primary">
-                <a href="{{route('drinksize.create')}}" style="text-decoration: none; color: white">Add new Drink with size</a>
+                <a href="{{route('drink.index')}}" style="text-decoration: none; color: white">Back</a>
             </button>
         </div>
         <!-- /.panel-heading -->
@@ -22,8 +22,6 @@
                         <th>Drink name</th>
                         <th>Drink size</th>
                         <th>Price</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -34,18 +32,6 @@
                             <td>{{$drinksize->drink->drink_name}}</td>
                             <td>{{$drinksize->size->size}}</td>
                             <td>{{number_format($drinksize->price_each_size)}} VNĐ</td>
-                            <td>
-                                <form action="{{route('drinksize.edit', $drinksize)}}">
-                                    <button class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                </form>
-                            </td>
-                            <td>
-                                <form method="post" action="{{route('drinksize.destroy', $drinksize)}}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                </form>
-                            </td>
                         </tr>
                     @endforeach
                     </tbody>

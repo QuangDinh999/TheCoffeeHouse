@@ -22,7 +22,7 @@
                 @endforeach
             </select><br>
             <label>Price: </label><br>
-            <input type="text" name="price_each_size" placeholder="Price..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%" value="{{$drinksizes->price_each_size}}"><br>
+            <input type="text" required name="price_each_size" placeholder="Price..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%" value="{{$drinksizes->price_each_size}}"><br>
             <label>Size: </label><br>
             <select name="size_id" style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 14%">
                 @foreach($sizes as $size)

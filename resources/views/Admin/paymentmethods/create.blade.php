@@ -11,7 +11,7 @@
         <fieldset>
             <legend>ADD NEW</legend>
             <label>Payment Method: </label><br>
-            <input type="text" name="payment_name" placeholder="payment..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
+            <input type="text" required name="payment_name" placeholder="payment..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
             <button class="btn btn-primary">Add New</button>
         </fieldset>
     </form>

@@ -42,6 +42,7 @@ class DrinkSizeController extends Controller
     public function store(StoreDrinkSizeRequest $request)
     {
         DrinkSize::create($request->all());
+        flash()->addSuccess('Thêm Thành Công');
         return Redirect::route('drinksize.index');
     }
 
@@ -74,6 +75,7 @@ class DrinkSizeController extends Controller
     public function update(UpdateDrinkSizeRequest $request, DrinkSize $drinkSize)
     {
         $drinkSize->update($request->all());
+        flash()->addSuccess('Cập Nhật Thành Công');
         return Redirect::route('drinksize.index');
     }
 
@@ -83,6 +85,7 @@ class DrinkSizeController extends Controller
     public function destroy(DrinkSize $drinkSize)
     {
         $drinkSize->delete();
+        flash()->addSuccess('Xóa Thành Công');
         return Redirect::route('drinksize.index');
     }
 }

@@ -74,7 +74,7 @@
                                 <tr>
                                     <td>{{$value['drink_name']}}</td>
                                     <td><img src="{{asset('storage/Drink/'.$value['image'])}}" alt="Image"></td>
-                                    <td>{{$value['price']}}</td>
+                                    <td>{{number_format($value['price'])}} VNĐ</td>
                                     <td>
                                         <div class="qty">
                                             <button class="btn-minus"><i class="fa fa-minus"></i></button>
@@ -107,7 +107,6 @@
                         @foreach($drinks as $drink => $value)
                             <p>Sub Total<span>{{number_format($value['price_subtotal'])}} VNĐ</span></p>
                         @endforeach
-                        <p>Shipping Cost<span>$1</span></p>
                         <h4>Grand Total
                             <span>
                                 @php

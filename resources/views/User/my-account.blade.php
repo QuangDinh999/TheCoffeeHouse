@@ -49,12 +49,6 @@
             <div class="col-md-3">
                 <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
                     <a class="nav-link active" id="orders-nav" data-toggle="pill" href="#orders-tab" role="tab">Orders</a>
-                    <a class="nav-link" id="payment-nav" data-toggle="pill" href="#payment-tab" role="tab">Payment
-                        Method</a>
-                    <a class="nav-link" id="address-nav" data-toggle="pill" href="#address-tab" role="tab">address</a>
-                    <a class="nav-link" id="account-nav" data-toggle="pill" href="#account-tab" role="tab">Account
-                        Details</a>
-                    <a class="nav-link" href="index.html">Logout</a>
                 </div>
             </div>
             <div class="col-md-9">
@@ -97,7 +91,7 @@
                                             <a style="padding: 8px 16px;text-decoration: none; background-color: #cda566; color: #FFFFFF"  href="{{route('my-account_detail',$history->id )}}"><i class="fa fa-info" aria-hidden="true"></i></a>
                                         </td>
                                         <td>
-                                               @if( $history->invoice_status == 2 || $history->invoice_status == 3)
+                                               @if( $history->invoice_status == 2 || $history->invoice_status == 4 || $history->invoice_status == 1)
                                                 <a style="padding: 8px 12px;text-decoration: none; background-color: #c23f1f; color: #FFFFFF"  {{"onclick= error()"}}><i class="fa fa-times-circle" aria-hidden="true"></i></a>
                                                @else
                                                 <a style="padding: 8px 12px;text-decoration: none; background-color: #c23f1f; color: #FFFFFF" href="{{route('cancel_invoice',$history->id )}}" {{"onclick= DeleteShipping(event)"}}><i class="fa fa-times-circle" aria-hidden="true"></i></a>
@@ -107,72 +101,6 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="payment-tab" role="tabpanel" aria-labelledby="payment-nav">
-                        <h4>Payment Method</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum quam ac mi viverra
-                            dictum. In efficitur ipsum diam, at dignissim lorem tempor in. Vivamus tempor hendrerit
-                            finibus. Nulla tristique viverra nisl, sit amet bibendum ante suscipit non. Praesent in
-                            faucibus tellus, sed gravida lacus. Vivamus eu diam eros. Aliquam et sapien eget arcu
-                            rhoncus scelerisque.
-                        </p>
-                    </div>
-                    <div class="tab-pane fade" id="address-tab" role="tabpanel" aria-labelledby="address-nav">
-                        <h4>Address</h4>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5>Payment Address</h5>
-                                <p>123 Payment Street, Los Angeles, CA</p>
-                                <p>Mobile: 012-345-6789</p>
-                                <button>Edit Address</button>
-                            </div>
-                            <div class="col-md-6">
-                                <h5>Shipping Address</h5>
-                                <p>123 Shipping Street, Los Angeles, CA</p>
-                                <p>Mobile: 012-345-6789</p>
-                                <button>Edit Address</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="account-tab" role="tabpanel" aria-labelledby="account-nav">
-                        <h4>Account Details</h4>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input type="text" placeholder="First Name">
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" placeholder="Last Name">
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" placeholder="Mobile">
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" placeholder="Email">
-                            </div>
-                            <div class="col-md-12">
-                                <input type="text" placeholder="Address">
-                            </div>
-                            <div class="col-md-12">
-                                <button>Update Account</button>
-                                <br><br>
-                            </div>
-                        </div>
-                        <h4>Password change</h4>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <input type="password" placeholder="Current Password">
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" placeholder="New Password">
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" placeholder="Confirm Password">
-                            </div>
-                            <div class="col-md-12">
-                                <button>Save Changes</button>
-                            </div>
                         </div>
                     </div>
                 </div>

@@ -11,15 +11,15 @@
         <fieldset>
             <legend>ADD NEW</legend>
             <label>Name: </label><br>
-            <input type="text" name="cus_name" placeholder="Name..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
+            <input type="text" required name="cus_name" placeholder="Name..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
             <label>Email: </label><br>
-            <input type="email" name="cus_email" placeholder="Email..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
+            <input type="email" required name="cus_email" placeholder="Email..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
             <label>Password: </label><br>
-            <input type="password" name="cus_password" placeholder="Password..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
+            <input type="password" required name="cus_password" placeholder="Password..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
             <label>Phone: </label><br>
-            <input type="text" name="phone" placeholder="Phone..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
+            <input type="text" required name="phone" placeholder="Phone..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
             <label>Adress: </label><br>
-            <input type="text" name="address" placeholder="Address..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
+            <input type="text" required name="address" placeholder="Address..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
             <button class="btn btn-primary">Add New</button>
         </fieldset>
     </form>

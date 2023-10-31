@@ -35,6 +35,7 @@ class SizeController extends Controller
     {
         $data = $request->all();
         Size::create($data);
+        flash()->addSuccess('Thêm Thành Công');
         return Redirect::route('size.index');
     }
 
@@ -62,6 +63,7 @@ class SizeController extends Controller
     public function update(UpdateSizeRequest $request, Size $size)
     {
         $size->update($request->all());
+        flash()->addSuccess('Cập Nhật Thành Công');
         return Redirect::route('size.index');
     }
 
@@ -71,6 +73,7 @@ class SizeController extends Controller
     public function destroy(Size $size)
     {
         $size->delete();
+        flash()->addSuccess('Xóa Thành Công');
         return Redirect::route('size.index');
     }
 }

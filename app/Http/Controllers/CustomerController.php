@@ -47,6 +47,7 @@ class CustomerController extends Controller
         $array = Arr::add($array, 'phone', $request->phone);
         $array = Arr::add($array, 'address', $request->address);
         Customer::create($array);
+        flash()->addSuccess('Thêm Thành Công');
         return Redirect::back();
     }
 
@@ -74,6 +75,7 @@ class CustomerController extends Controller
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
         $customer->update($request->all());
+        flash()->addSuccess('Cập Nhật Thành Công');
         return Redirect::route('customer.index');
     }
 
@@ -83,6 +85,7 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         $customer->delete();
+        flash()->addSuccess('Xóa Thành Công');
         return Redirect::route('customer.index');
     }
 

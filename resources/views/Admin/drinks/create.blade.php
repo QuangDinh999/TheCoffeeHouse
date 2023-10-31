@@ -12,10 +12,10 @@
             <legend>ADD NEW</legend>
             <div class="col-lg-6">
                 <label>Drink Name: </label><br>
-                <input type="text" name="drink_name" placeholder="Name..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
+                <input type="text" required name="drink_name" placeholder="Name..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
 
                 <label>Description: </label><br>
-                <input type="text" name="description" placeholder="description..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
+                <input type="text" required name="description" placeholder="description..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
                 <label>Category: </label><br>
 
                 <select name="category_id" style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 14%">
@@ -27,7 +27,7 @@
 
             <div class="col-lg-6">
                 <label>Image: </label><br>
-                <input type="file" name="image" ><br>
+                <input type="file" required name="image" ><br>
                 <img src="" style="width: 300px; height: 300px; border: #286090 2px solid">
             </div>
 

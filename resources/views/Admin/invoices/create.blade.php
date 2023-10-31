@@ -12,11 +12,11 @@
             <legend>ADD NEW</legend>
                <div class="col-md-6">
                    <label>Date: </label><br>
-                   <input type="date" name="date" placeholder="Date..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 85%"><br>
+                   <input type="date" required name="date" placeholder="Date..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 85%"><br>
                    <label>Tên Khách Hàng: </label><br>
-                   <input type="text" name="customer" placeholder="Tên Khách..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 85%"><br>
+                   <input type="text" required name="customer" placeholder="Tên Khách..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 85%"><br>
                    <label>Địa Chỉ: </label><br>
-                   <input type="text" name="address" value="70 Phố Huế" placeholder="Địa Chỉ..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 85%"><br>
+                   <input type="text" required name="address" value="70 Phố Huế" placeholder="Địa Chỉ..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 85%"><br>
                    <label>PTTT: </label><br>
                    <select name="payment" style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 45%">
                        @foreach($payments as $payment)

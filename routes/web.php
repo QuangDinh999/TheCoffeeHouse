@@ -100,6 +100,7 @@ Route::middleware('AdminMiddleware')->prefix('/drinks')->group(function (){
     Route::get('/{drink}/edit', [\App\Http\Controllers\DrinkController::class, 'edit'])->name('drink.edit');
     Route::put('/{drink}/edit', [\App\Http\Controllers\DrinkController::class, 'update'])->name('drink.update');
     Route::delete('/{drink}/destroy', [\App\Http\Controllers\DrinkController::class, 'destroy'])->name('drink.destroy');
+    Route::get('/{id}/size', [\App\Http\Controllers\DrinkController::class, 'size_detail'])->name('drink.size_detail');
 });
 
 Route::middleware('AdminMiddleware')->prefix('/admins')->group(function (){

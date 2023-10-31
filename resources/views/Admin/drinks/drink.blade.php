@@ -23,6 +23,7 @@
                         <th>image</th>
                         <th>category</th>
                         <th>description</th>
+                        <th>Size</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -35,7 +36,11 @@
                             <td><img src="{{asset('storage/Drink/'.$drink->image)}}" width="150px" height="150px"></td>
                             <td>{{$drink->category->category_name}}</td>
                             <td>{{$drink->description}}</td>
-
+                            <td>
+                                <form action="{{route('drink.size_detail', $drink->id)}}">
+                                    <button class="btn btn-info"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
+                                </form>
+                            </td>
                             <td>
                                 <form action="{{route('drink.edit', $drink)}}">
                                     <button class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i></button>

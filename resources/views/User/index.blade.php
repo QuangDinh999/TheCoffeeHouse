@@ -51,9 +51,9 @@
         <div class="featured-product">
             <div class="container">
                 <div class="section-header">
-                    <h3>Featured Product</h3>
+                    <h3>MENU</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra at massa sit amet ultricies. Nullam consequat, mauris non interdum cursus
+                        Menu cửa hàng đa dạng nhiều loại đồ uống, giúp khách hàng luôn có những loại đồ uống mới mẻ
                     </p>
                 </div>
 
@@ -95,7 +95,7 @@
             <a href="{{route('drink-list')}}" style="background:#CDA566; padding: 12px; color: #ffffff; border:#b78637 2px solid; text-decoration: none ">Xem Thêm</a>
         </div>
 
-        <div id="carouselExampleFade" class="carousel slide carousel-fade">
+        <div id="carouselExampleFade" class="carousel slide carousel-fade" style="margin-bottom: 60px" >
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="{{asset('storage/banner/banner_1.jpg')}}" class="d-block w-100" alt="...">
@@ -118,188 +118,12 @@
         </div>
 
 
-        <!-- Recent Product Start -->
-        <div class="recent-product">
-            <div class="container">
-                <div class="section-header">
-                    <h3>Recent Product</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra at massa sit amet ultricies. Nullam consequat, mauris non interdum cursus
-                    </p>
-                </div>
-                <div class="row align-items-center product-slider product-slider-4">
-                    <div class="col-lg-3">
-                        <div class="product-item">
-                            <div class="product-image">
-                                <a href="product-detail.html">
-                                    <img src="img/bacsiu.webp" alt="Product Image">
-                                </a>
-                                <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                    <a href="#"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-content">
-                                <div class="title"><a href="#">Phasellus Gravida</a></div>
-                                <div class="ratting">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="price">$22 <span>$25</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="product-item">
-                            <div class="product-image">
-                                <a href="product-detail.html">
-                                    <img src="img/caramel_Macchiato.webp" alt="Product Image">
-                                </a>
-                                <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                    <a href="#"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-content">
-                                <div class="title"><a href="#">Phasellus Gravida</a></div>
-                                <div class="ratting">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="price">$22 <span>$25</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="product-item">
-                            <div class="product-image">
-                                <a href="product-detail.html">
-                                    <img src="img/Americano_ICe.webp" alt="Product Image">
-                                </a>
-                                <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                    <a href="#"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-content">
-                                <div class="title"><a href="#">Phasellus Gravida</a></div>
-                                <div class="ratting">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="price">$22 <span>$25</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="product-item">
-                            <div class="product-image">
-                                <a href="product-detail.html">
-                                    <img src="img/Latte_Ice.webp" alt="Product Image">
-                                </a>
-                                <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                    <a href="#"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-content">
-                                <div class="title"><a href="#">Phasellus Gravida</a></div>
-                                <div class="ratting">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="price">$22 <span>$25</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="product-item">
-                            <div class="product-image">
-                                <a href="product-detail.html">
-                                    <img src="img/HongTraSTC.webp" alt="Product Image">
-                                </a>
-                                <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                    <a href="#"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-content">
-                                <div class="title"><a href="#">Phasellus Gravida</a></div>
-                                <div class="ratting">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="price">$22 <span>$25</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Recent Product End -->
 
 
-<!--        &lt;!&ndash; Brand Start &ndash;&gt;-->
-<!--        <div class="brand">-->
-<!--            <div class="container">-->
-<!--                <div class="section-header">-->
-<!--                    <h3>Our Brands</h3>-->
-<!--                    <p>-->
-<!--                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra at massa sit amet ultricies. Nullam consequat, mauris non interdum cursus-->
-<!--                    </p>-->
-<!--                </div>-->
-<!--                <div class="brand-slider">-->
-<!--                    <div class="brand-item"><img src="img/brand-1.png" alt=""></div>-->
-<!--                    <div class="brand-item"><img src="img/brand-2.png" alt=""></div>-->
-<!--                    <div class="brand-item"><img src="img/brand-3.png" alt=""></div>-->
-<!--                    <div class="brand-item"><img src="img/brand-4.png" alt=""></div>-->
-<!--                    <div class="brand-item"><img src="img/brand-5.png" alt=""></div>-->
-<!--                    <div class="brand-item"><img src="img/brand-6.png" alt=""></div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        &lt;!&ndash; Brand End &ndash;&gt;-->
+
 
 
        @include('User.footer.footer')
-
-
-<!--        &lt;!&ndash; Footer Bottom Start &ndash;&gt;-->
-<!--        <div class="footer-bottom">-->
-<!--            <div class="container">-->
-<!--                <div class="row">-->
-<!--                    <div class="col-md-6 copyright">-->
-<!--                        <p>Copyright &copy; <a href="https://htmlcodex.com">HTML Codex</a>. All Rights Reserved</p>-->
-<!--                    </div>-->
-
-<!--                    <div class="col-md-6 template-by">-->
-<!--                        <p>Template By <a href="https://htmlcodex.com">HTML Codex</a></p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        &lt;!&ndash; Footer Bottom End &ndash;&gt;-->
-
 
         <!-- Back to Top -->
         <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>

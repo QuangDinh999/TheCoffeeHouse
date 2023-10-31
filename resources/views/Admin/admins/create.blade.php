@@ -11,11 +11,11 @@
         <fieldset>
             <legend>ADD NEW</legend>
             <label>Email: </label><br>
-            <input type="email" name="admin_email" placeholder="Email..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
+            <input type="email" required name="admin_email" placeholder="Email..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
             <label>Name: </label><br>
-            <input type="text" name="admin_name" placeholder="Name..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
+            <input type="text" required name="admin_name" placeholder="Name..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
             <label>Password: </label><br>
-            <input type="password" name="admin_password" placeholder="Password..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
+            <input type="password" required name="admin_password" placeholder="Password..." style="border:solid #337ab7 2px; margin-bottom: 15px; ; padding: 5px; width: 40%"><br>
             <button class="btn btn-primary">Add New</button>
         </fieldset>
     </form>
