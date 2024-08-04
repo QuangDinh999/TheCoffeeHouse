@@ -12,7 +12,6 @@
             <div class="col-md-6">
                 <div class="search">
                     <form action="{{route('search')}}">
-
                         <input type="text" placeholder="Search" name="search_word" value="">
                         <button style="height: 40px; right: 13px; padding: 0px 15px; top: 0px"><i class="fa fa-search"></i></button>
                     </form>

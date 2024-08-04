@@ -55,7 +55,7 @@
     <div id="page-wrapper">
         <div class="container-fluid">
             <div class="row">
-                @yield('heading')
+                    @yield('heading')
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->

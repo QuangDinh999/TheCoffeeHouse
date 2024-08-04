@@ -92,9 +92,9 @@
                                         </td>
                                         <td>
                                                @if( $history->invoice_status == 2 || $history->invoice_status == 4 || $history->invoice_status == 1)
-                                                <a style="padding: 8px 12px;text-decoration: none; background-color: #c23f1f; color: #FFFFFF"  {{"onclick= error()"}}><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                                                <a style="padding: 8px 12px;text-decoration: none; background-color: #c23f1f; color: #FFFFFF"  ><i class="fa fa-times-circle" aria-hidden="true"></i></a>
                                                @else
-                                                <a style="padding: 8px 12px;text-decoration: none; background-color: #c23f1f; color: #FFFFFF" href="{{route('cancel_invoice',$history->id )}}" {{"onclick= DeleteShipping(event)"}}><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                                                <a style="padding: 8px 12px;text-decoration: none; background-color: #c23f1f; color: #FFFFFF" href="{{route('cancel_invoice',$history->id )}}" ><i class="fa fa-times-circle" aria-hidden="true"></i></a>
                                                @endif
                                         </td>
                                     </tr>

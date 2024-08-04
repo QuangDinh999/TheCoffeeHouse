@@ -107,6 +107,7 @@ class DrinkController extends Controller
      */
     public function destroy(Drink $drink)
     {
+        DrinkSize::where('drink_id', $drink->id)->delete();
         $drink->delete();
         flash()->addSuccess('Xóa Thành Công');
         return Redirect::route('drink.index');

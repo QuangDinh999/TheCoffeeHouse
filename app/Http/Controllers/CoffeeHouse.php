@@ -207,7 +207,12 @@ class CoffeeHouse extends Controller
     public function cancel_invoice(Request $request) {
         $obj = new \App\Models\CoffeeHouse();
         $obj->id = $request->id;
-        $obj->cancel_invoice();
+        $result = $obj->cancel_invoice();
+        if($result) {
+            flash()->addSuccess('Huỷ Đơn Hàng Thành Công');
+        }else {
+            flash()->addError('Hủy Đơn Hàng Không Thành Công Do Đơn Hàng đã được duyệt hoặc đang giao Hàng');
+        }
 
         return Redirect::back();
     }

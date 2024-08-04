@@ -134,6 +134,14 @@ class CoffeeHouse extends Model
     }
 
     public function cancel_invoice() {
-        DB::table('invoices')->where('id', $this->id)->update(['invoice_status' => 4]);
+        $invoice_status = DB::table('invoices')->where('id', $this->id)->value('invoice_status');
+        if($invoice_status == 0) {
+            DB::table('invoices')->where('id', $this->id)->update(['invoice_status' => 4]);
+            return true;
+        } else {
+            return false;
+        }
+
+
     }
 }

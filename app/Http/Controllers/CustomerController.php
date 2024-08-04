@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateCustomerRequest;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 
 class CustomerController extends Controller
@@ -46,8 +47,10 @@ class CustomerController extends Controller
         $array = Arr::add($array, 'password', bcrypt($request->cus_password));
         $array = Arr::add($array, 'phone', $request->phone);
         $array = Arr::add($array, 'address', $request->address);
+        Log::info('Customer Array:', $array);
+
         Customer::create($array);
-        flash()->addSuccess('Thêm Thành Công');
+        
         return Redirect::back();
     }
 
